@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Desk Guide: Indian Broking Industry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060912;
+  --surface: #090e1c;
+  --card: #0d1426;
+  --card2: #111828;
+  --border: rgba(48,170,130,0.18);
+  --border-dim: rgba(48,170,130,0.08);
+  --green: #30aa82;
+  --green-bright: #3dffa0;
+  --green-dim: #1a6650;
+  --red: #e84040;
+  --red-dim: rgba(232,64,64,0.15);
+  --gold: #e8aa30;
+  --gold-dim: rgba(232,170,48,0.15);
+  --blue: #4a9eff;
+  --text: #b8c8d8;
+  --text-bright: #e8f0f8;
+  --text-dim: #556070;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+  --head: 'Space Grotesk', sans-serif;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── TICKER ── */
+.ticker-wrap {
+  background: #010408;
+  border-bottom: 1px solid var(--border-dim);
+  overflow: hidden; height: 34px;
+  display: flex; align-items: center;
+}
+.ticker-track {
+  display: flex; gap: 0;
+  animation: ticker-scroll 60s linear infinite;
+  white-space: nowrap;
+}
+.ticker-item {
+  font-family: var(--mono); font-size: 0.7rem;
+  padding: 0 2rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  border-right: 1px solid rgba(48,170,130,0.1);
+}
+.ticker-item .name { color: var(--text-dim); letter-spacing: 0.05em; }
+.ticker-item .val { color: var(--text-bright); font-weight: 500; }
+.ticker-item .chg.up { color: var(--green); }
+.ticker-item .chg.dn { color: var(--red); }
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── HEADER ── */
+header {
+  background: linear-gradient(180deg, #08111f 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 39px,
+    rgba(48,170,130,0.03) 39px, rgba(48,170,130,0.03) 40px
+  ),
+  repeating-linear-gradient(
+    90deg, transparent, transparent 39px,
+    rgba(48,170,130,0.03) 39px, rgba(48,170,130,0.03) 40px
+  );
+  pointer-events: none;
+}
+.header-tag {
+  font-family: var(--mono); font-size: 0.7rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 1rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+}
+.header-tag::before, .header-tag::after {
+  content: ''; width: 40px; height: 1px; background: var(--green-dim);
+}
+h1 {
+  font-family: var(--head);
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 700; color: var(--text-bright);
+  line-height: 1.15; margin-bottom: 0.8rem; position: relative;
+}
+h1 span { color: var(--green); }
+.header-sub {
+  font-size: 1rem; color: var(--text-dim);
+  max-width: 580px; margin: 0 auto 1.5rem;
+  line-height: 1.7;
+}
+.header-meta {
+  display: flex; gap: 1.5rem; justify-content: center;
+  flex-wrap: wrap;
+}
+.meta-chip {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-dim); background: rgba(48,170,130,0.06);
+  border: 1px solid var(--border-dim);
+  padding: 0.35rem 0.8rem; border-radius: 3px;
+}
+.film-quote {
+  font-style: italic; color: var(--text-dim);
+  font-size: 0.85rem; margin-top: 1.5rem;
+  border-top: 1px solid var(--border-dim);
+  padding-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.film-quote cite { color: var(--green-dim); font-style: normal; font-size: 0.75rem; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,9,18,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1300px; margin: 0 auto;
+  display: flex; overflow-x: auto; scrollbar-width: none;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-btn {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-dim); background: none; border: none;
+  padding: 1rem 1.1rem; cursor: pointer;
+  white-space: nowrap; flex-shrink: 0;
+  position: relative; transition: color 0.2s;
+  border-bottom: 2px solid transparent;
+}
+.nav-btn:hover { color: var(--text); }
+.nav-btn.active { color: var(--green); border-bottom-color: var(--green); }
+
+/* ── LAYOUT ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+.section { display: none; padding: 3rem 0; animation: fadeIn 0.4s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── TYPOGRAPHY ── */
+.sec-title {
+  font-family: var(--head); font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700; color: var(--text-bright);
+  margin-bottom: 0.4rem;
+}
+.sec-title span { color: var(--green); }
+.sec-desc {
+  color: var(--text-dim); font-size: 0.95rem;
+  margin-bottom: 2.5rem; max-width: 680px; line-height: 1.7;
+}
+h3 {
+  font-family: var(--head); font-size: 1.05rem;
+  font-weight: 600; color: var(--text-bright); margin-bottom: 0.6rem;
+}
+h4 {
+  font-family: var(--mono); font-size: 0.72rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.5rem;
+}
+p { margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.75; }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--text-bright); font-weight: 600; }
+ul, ol { padding-left: 1.4rem; }
+li { margin-bottom: 0.4rem; font-size: 0.95rem; line-height: 1.7; }
+
+/* ── CARDS ── */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px; padding: 1.4rem 1.5rem;
+  position: relative; overflow: hidden;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--border); }
+.card.accent-green { border-left: 3px solid var(--green); }
+.card.accent-red   { border-left: 3px solid var(--red); }
+.card.accent-gold  { border-left: 3px solid var(--gold); }
+.card.accent-blue  { border-left: 3px solid var(--blue); }
+.card-icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+.card p { color: var(--text); }
+
+/* ── CALLOUTS ── */
+.callout {
+  border-radius: 6px; padding: 1.1rem 1.4rem;
+  margin: 1.5rem 0; display: flex; gap: 1rem; align-items: flex-start;
+}
+.callout.sebi { background: rgba(74,158,255,0.07); border: 1px solid rgba(74,158,255,0.25); }
+.callout.risk { background: var(--red-dim); border: 1px solid rgba(232,64,64,0.3); }
+.callout.tip  { background: rgba(48,170,130,0.07); border: 1px solid var(--border); }
+.callout.note { background: var(--gold-dim); border: 1px solid rgba(232,170,48,0.3); }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+.callout-body h4 { margin-bottom: 0.3rem; }
+.callout.sebi h4 { color: var(--blue); }
+.callout.risk h4 { color: var(--red); }
+.callout.note h4 { color: var(--gold); }
+.callout-body p { font-size: 0.9rem; margin: 0; }
+
+/* ── TABLES ── */
+.table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 6px; border: 1px solid var(--border-dim); }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+thead tr { background: rgba(48,170,130,0.06); }
+th {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--green); padding: 0.8rem 1rem;
+  text-align: left; border-bottom: 1px solid var(--border-dim);
+  white-space: nowrap;
+}
+td {
+  padding: 0.75rem 1rem; color: var(--text);
+  border-bottom: 1px solid var(--border-dim);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(48,170,130,0.04); }
+td.mono { font-family: var(--mono); font-size: 0.82rem; color: var(--text-bright); }
+td.green { color: var(--green); font-family: var(--mono); }
+td.red { color: var(--red); font-family: var(--mono); }
+td.gold { color: var(--gold); }
+
+/* ── FLOW DIAGRAM ── */
+.flow {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 0; margin: 2rem 0;
+}
+.flow-node {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.7rem 1rem;
+  text-align: center; min-width: 100px;
+  flex-shrink: 0;
+}
+.flow-node .fn-label {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 0.2rem;
+}
+.flow-node .fn-name {
+  font-size: 0.8rem; font-weight: 600; color: var(--text-bright);
+}
+.flow-arrow {
+  color: var(--green-dim); font-size: 1.2rem;
+  padding: 0 0.3rem; flex-shrink: 0;
+}
+.flow-wrap { overflow-x: auto; padding-bottom: 0.5rem; }
+
+/* ── BADGE ── */
+.badge {
+  display: inline-block; font-family: var(--mono);
+  font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.2rem 0.5rem; border-radius: 3px; margin-right: 0.3rem;
+}
+.badge-green { background: rgba(48,170,130,0.15); color: var(--green); border: 1px solid rgba(48,170,130,0.3); }
+.badge-red   { background: var(--red-dim); color: var(--red); border: 1px solid rgba(232,64,64,0.3); }
+.badge-gold  { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(232,170,48,0.3); }
+.badge-blue  { background: rgba(74,158,255,0.1); color: var(--blue); border: 1px solid rgba(74,158,255,0.3); }
+
+/* ── DIVIDER ── */
+.divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 2rem 0 1.5rem;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-dim), transparent);
+}
+.divider span {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-dim);
+  white-space: nowrap;
+}
+
+/* ── ACCORDION (glossary) ── */
+.accordion { margin-bottom: 0.4rem; }
+.acc-header {
+  width: 100%; text-align: left; background: var(--card);
+  border: 1px solid var(--border-dim); border-radius: 4px;
+  padding: 0.85rem 1.1rem; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+.acc-header:hover, .acc-header.open { background: var(--card2); border-color: var(--border); }
+.acc-term {
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--text-bright); font-weight: 500; letter-spacing: 0.04em;
+}
+.acc-chevron { color: var(--green-dim); transition: transform 0.25s; font-size: 0.8rem; }
+.acc-header.open .acc-chevron { transform: rotate(180deg); }
+.acc-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  background: rgba(13,20,38,0.6);
+  border: 1px solid var(--border-dim); border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+.acc-body.open { max-height: 600px; padding: 1rem 1.2rem; }
+.acc-body p { font-size: 0.9rem; margin: 0; }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 6px; top: 0; bottom: 0;
+  width: 1px; background: var(--border-dim);
+}
+.tl-item { position: relative; margin-bottom: 1.8rem; }
+.tl-dot {
+  position: absolute; left: -2rem; top: 0.35rem;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--green-dim); border: 2px solid var(--green);
+}
+.tl-year {
+  font-family: var(--mono); font-size: 0.7rem;
+  color: var(--green); letter-spacing: 0.1em; margin-bottom: 0.3rem;
+}
+.tl-text { font-size: 0.9rem; line-height: 1.7; }
+
+/* ── STAT BOXES ── */
+.stats-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+.stat-box {
+  background: var(--card); border: 1px solid var(--border-dim);
+  border-radius: 6px; padding: 1.1rem 1.3rem; flex: 1; min-width: 140px;
+}
+.stat-num {
+  font-family: var(--mono); font-size: 1.6rem;
+  font-weight: 500; color: var(--green); line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.stat-label { font-size: 0.75rem; color: var(--text-dim); }
+
+/* ── NISM CARDS ── */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.cert-card {
+  background: var(--card); border: 1px solid var(--border-dim);
+  border-radius: 6px; padding: 1.2rem;
+}
+.cert-code {
+  font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.1em; color: var(--green);
+  margin-bottom: 0.4rem; display: block;
+}
+.cert-name { font-weight: 600; color: var(--text-bright); font-size: 0.9rem; margin-bottom: 0.4rem; }
+.cert-req { font-size: 0.8rem; color: var(--text-dim); }
+
+/* ── CAREER LADDER ── */
+.career-path {
+  display: flex; gap: 0.5rem; align-items: stretch;
+  flex-wrap: wrap; margin: 1.5rem 0;
+}
+.cp-step {
+  background: var(--card); border: 1px solid var(--border-dim);
+  border-radius: 6px; padding: 1rem; flex: 1; min-width: 130px;
+  text-align: center; position: relative;
+}
+.cp-level {
+  font-family: var(--mono); font-size: 0.6rem;
+  color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 0.4rem;
+}
+.cp-title { font-weight: 600; color: var(--text-bright); font-size: 0.85rem; margin-bottom: 0.3rem; }
+.cp-yr { font-family: var(--mono); font-size: 0.7rem; color: var(--green); }
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  header { padding: 2rem 1rem 1.8rem; }
+  .page { padding: 0 1rem; }
+  .section { padding: 2rem 0; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .stats-row .stat-box { min-width: 120px; }
+  .flow-node { min-width: 80px; padding: 0.5rem 0.6rem; }
+  .flow-node .fn-name { font-size: 0.72rem; }
+  h1 { font-size: 1.7rem; }
+  .career-path { flex-direction: column; }
+  .cert-grid { grid-template-columns: 1fr; }
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border-dim);
+  padding: 2.5rem 1.5rem; text-align: center;
+  color: var(--text-dim); font-size: 0.82rem; line-height: 2;
+}
+footer .ft { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; color: var(--green-dim); margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<header>
+  <div class="header-tag">NSE / BSE / SEBI</div>
+  <h1>The <span>Desk Guide</span><br>Indian Broking Industry</h1>
+  <p class="header-sub">From AP registration to exchange settlement. Everything a finance graduate needs before their first week on the desk.</p>
+  <div class="header-meta">
+    <span class="meta-chip">India Focus</span>
+    <span class="meta-chip">SEBI Framework</span>
+    <span class="meta-chip">NSE / BSE / MCX</span>
+    <span class="meta-chip">T+1 Settlement</span>
+    <span class="meta-chip">2025 Updated</span>
+  </div>
+  <div class="film-quote">
+    "It's just money. It's made up. Pieces of paper with pictures on it so we don't have to kill each other just to get something to eat."<br>
+    <cite>- Margin Call (2011)</cite>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="show('industry',this)">01 Industry</button>
+    <button class="nav-btn" onclick="show('ecosystem',this)">02 Ecosystem</button>
+    <button class="nav-btn" onclick="show('lifecycle',this)">03 Trade Lifecycle</button>
+    <button class="nav-btn" onclick="show('products',this)">04 Products</button>
+    <button class="nav-btn" onclick="show('ap',this)">05 AP Model</button>
+    <button class="nav-btn" onclick="show('margins',this)">06 Margins & Risk</button>
+    <button class="nav-btn" onclick="show('compliance',this)">07 Compliance</button>
+    <button class="nav-btn" onclick="show('revenue',this)">08 Revenue Model</button>
+    <button class="nav-btn" onclick="show('career',this)">09 Career</button>
+    <button class="nav-btn" onclick="show('glossary',this)">10 Glossary</button>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- ════ 01 INDUSTRY ════ -->
+<section id="industry" class="section active">
+  <div class="sec-title">The <span>Industry</span></div>
+  <p class="sec-desc">Indian securities broking is one of the largest and fastest-growing retail investment ecosystems in the world. Here is how it came to be and what it looks like today.</p>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num">160M+</div><div class="stat-label">Active Demat Accounts (2025)</div></div>
+    <div class="stat-box"><div class="stat-num">~9,000</div><div class="stat-label">SEBI Registered Brokers</div></div>
+    <div class="stat-box"><div class="stat-num">T+1</div><div class="stat-label">Settlement Cycle (since Jan 2023)</div></div>
+    <div class="stat-box"><div class="stat-num">78%</div><div class="stat-label">F&O of Total NSE Turnover</div></div>
+  </div>
+
+  <div class="divider"><span>Evolution</span></div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1875</div>
+      <div class="tl-text"><strong>BSE founded</strong> as "The Native Share and Stock Brokers Association" in Dalal Street, Mumbai. Asia's oldest stock exchange. Trading was done under a banyan tree before a formal premises was established.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1988 / 1992</div>
+      <div class="tl-text"><strong>SEBI established</strong> in 1988 as a non-statutory body, granted statutory powers via the SEBI Act 1992. This gave SEBI authority to register, regulate and investigate all market intermediaries.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1992 / 1994</div>
+      <div class="tl-text"><strong>NSE incorporated</strong> in 1992, commenced equity trading in November 1994. NSE introduced screen-based electronic trading, replacing the open outcry system. This democratized access beyond Mumbai's broker circle.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1996</div>
+      <div class="tl-text"><strong>Demat system launched.</strong> NSDL (National Securities Depository Limited) became India's first depository, ending physical share certificates. CDSL followed in 1999. This eliminated forgery, theft, and bad delivery risks.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2000</div>
+      <div class="tl-text"><strong>Derivatives launched on NSE.</strong> Index Futures began on June 12, 2000. Index Options in June 2001, Stock Options and Futures in 2001-02. This transformed India into one of the world's largest derivatives markets by volume.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2010</div>
+      <div class="tl-text"><strong>Zerodha founded.</strong> India's first significant discount broker, charging flat Rs.20 per trade. This disrupted the full-service model, forcing the industry to reconsider its pricing and technology stack entirely.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2016</div>
+      <div class="tl-text"><strong>Sub-broker model abolished by SEBI.</strong> SEBI circular CIR/HO/MIRSD/MIRSD2/CIR/P/2016/110 replaced sub-brokers with Authorized Persons (APs), a pure agency model with stricter controls and no client fund handling.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2020-21</div>
+      <div class="tl-text"><strong>Peak Margin framework introduced.</strong> SEBI mandated brokers to collect full upfront margin from clients before order placement. This fundamentally changed leverage available to retail traders and the risk profile of the broking business.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2023</div>
+      <div class="tl-text"><strong>T+1 settlement fully implemented</strong> across all securities from January 27, 2023. India became one of the first major markets globally to move to T+1, reducing counterparty risk and unlocking capital faster for investors.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Types of Broking</span></div>
+  <div class="grid-2">
+    <div class="card accent-green">
+      <h3>Full-Service Brokers</h3>
+      <p>Offer research, advisory, PMS (Portfolio Management Services), trading, and relationship managers. Revenue from percentage-based brokerage (0.2% to 0.5% on delivery). Examples: Motilal Oswal, ICICI Direct, HDFC Securities, Kotak Securities.</p>
+    </div>
+    <div class="card accent-blue">
+      <h3>Discount Brokers</h3>
+      <p>Technology-first, flat-fee pricing (typically Rs.20 per executed order or zero for delivery equity). No advisory, minimal human touchpoints. Examples: Zerodha, Upstox, Angel One, Groww, 5Paisa. Captured majority of new account openings since 2020.</p>
+    </div>
+    <div class="card accent-gold">
+      <h3>Institutional Brokers</h3>
+      <p>Serve FPIs (Foreign Portfolio Investors), domestic mutual funds, insurance companies, and proprietary trading firms. Provide DMA (Direct Market Access), block deal facilitation, and research. Revenue model is negotiated per institutional client.</p>
+    </div>
+    <div class="card accent-red">
+      <h3>Commodity Brokers</h3>
+      <p>Members of MCX (Multi Commodity Exchange) and NCDEX (National Commodity and Derivatives Exchange). Facilitate trading in gold, silver, crude oil, agri-commodities. Regulated by SEBI (commodity derivatives came under SEBI in 2015 after FMC merger).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 02 ECOSYSTEM ════ -->
+<section id="ecosystem" class="section">
+  <div class="sec-title">The <span>Ecosystem</span></div>
+  <p class="sec-desc">Every trade involves a chain of institutions, each with a defined role. Understanding who does what is foundational knowledge for anyone on the desk.</p>
+
+  <div class="flow-wrap">
+    <div class="flow">
+      <div class="flow-node"><div class="fn-label">Regulator</div><div class="fn-name">SEBI</div></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-node"><div class="fn-label">Exchange</div><div class="fn-name">NSE / BSE</div></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-node"><div class="fn-label">Clearing</div><div class="fn-name">NSCCL / ICCL</div></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-node"><div class="fn-label">Depository</div><div class="fn-name">NSDL / CDSL</div></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-node"><div class="fn-label">Broker / TM</div><div class="fn-name">Trading Member</div></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-node"><div class="fn-label">Agent</div><div class="fn-name">AP / Branch</div></div>
+      <div class="flow-arrow">&#8594;</div>
+      <div class="flow-node"><div class="fn-label">End User</div><div class="fn-name">Client</div></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card accent-blue">
+      <div class="card-icon">🏛</div>
+      <h3>SEBI (Regulator)</h3>
+      <p>Securities and Exchange Board of India. Statutory body under SEBI Act 1992. Regulates all market intermediaries: brokers, depositories, exchanges, investment advisers, research analysts, portfolio managers. Issues circulars that are binding on all participants.</p>
+      <p style="margin-top:0.6rem"><span class="badge badge-blue">Quasi-Judicial</span> Can investigate, adjudicate, and impose penalties. Maximum penalty under SEBI Act: Rs.25 crore or three times profit.</p>
+    </div>
+    <div class="card accent-green">
+      <div class="card-icon">🔄</div>
+      <h3>NSE and BSE (Exchanges)</h3>
+      <p><strong>NSE</strong> (National Stock Exchange): Founded 1992, commenced operations 1994. India's largest exchange by turnover. Benchmark indices: Nifty 50, Bank Nifty, Nifty IT. Home of the largest F&O market by volume globally.</p>
+      <p style="margin-top:0.4rem"><strong>BSE</strong> (Bombay Stock Exchange): Asia's oldest exchange, 1875. Benchmark: Sensex (30 stocks). Larger number of listed companies (5,000+). Key for SME listings.</p>
+    </div>
+    <div class="card accent-gold">
+      <div class="card-icon">🔐</div>
+      <h3>Clearing Corporations</h3>
+      <p><strong>NSCCL</strong> (NSE Clearing Limited): Clearing and settlement for NSE. Becomes central counterparty (CCP) to every trade. Novation: buyer to every seller, seller to every buyer. Eliminates bilateral counterparty risk.</p>
+      <p style="margin-top:0.4rem"><strong>ICCL</strong> (Indian Clearing Corporation Ltd): Clearing for BSE. Same CCP function. Both are SEBI-recognized Qualified Central Counterparties (QCCPs).</p>
+    </div>
+    <div class="card accent-green">
+      <div class="card-icon">📂</div>
+      <h3>Depositories (NSDL / CDSL)</h3>
+      <p><strong>NSDL</strong> (National Securities Depository Limited, est. 1996): Holds securities in electronic form. Promoted by NSE, UTI, IDBI. Typically used by institutional and HNI clients.</p>
+      <p style="margin-top:0.4rem"><strong>CDSL</strong> (Central Depository Services Ltd, est. 1999): Promoted by BSE. Larger retail base. Listed on NSE. DPs (Depository Participants) are the interface between depositories and investors.</p>
+    </div>
+    <div class="card accent-red">
+      <div class="card-icon">🏢</div>
+      <h3>Trading Members (Brokers)</h3>
+      <p>SEBI-registered entities with exchange membership. Can trade on behalf of clients and proprietarily. Must maintain Net Worth requirements: Rs.1 crore for NSE CM segment, higher for additional segments. Subject to exchange inspection and SEBI audit.</p>
+      <p style="margin-top:0.4rem">Responsibilities include: order execution, contract note issuance, margin collection, client fund segregation, KYC, and regulatory reporting.</p>
+    </div>
+    <div class="card accent-gold">
+      <div class="card-icon">🤝</div>
+      <h3>Authorized Persons (APs)</h3>
+      <p>Agents of Trading Members. Cannot hold client funds or securities. Registered through the broker with the exchange. Earn revenue sharing from broker (typically 40 to 70% of brokerage generated from their clients). Full detail covered in Section 05.</p>
+    </div>
+    <div class="card accent-blue">
+      <div class="card-icon">🌐</div>
+      <h3>FPIs and DIIs</h3>
+      <p><strong>FPIs</strong> (Foreign Portfolio Investors): Registered with SEBI. Include sovereign funds, pension funds, hedge funds, and foreign mutual funds. Major price setters in large-cap stocks. Tracked daily by NSDL FPI data.</p>
+      <p style="margin-top:0.4rem"><strong>DIIs</strong> (Domestic Institutional Investors): Indian mutual funds, insurance companies (LIC), and pension funds. Act as counter-balance to FPI flows. Combined AUM of MF industry exceeded Rs.60 lakh crore in 2024.</p>
+    </div>
+    <div class="card accent-green">
+      <div class="card-icon">📊</div>
+      <h3>Other Key Regulators</h3>
+      <p><strong>RBI</strong>: Regulates currency derivatives, government securities, and overseas investment. Monetary policy decisions are the single biggest macro driver for equity markets.</p>
+      <p style="margin-top:0.4rem"><strong>AMFI</strong>: Association of Mutual Funds in India. Regulates distribution. ARN (AMFI Registration Number) is mandatory for MF distributors. Not a statutory body but sets industry norms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 03 TRADE LIFECYCLE ════ -->
+<section id="lifecycle" class="section">
+  <div class="sec-title">Trade <span>Lifecycle</span></div>
+  <p class="sec-desc">Understanding the full path from a client clicking "BUY" to securities landing in their demat account is essential. Each step has rules, risks, and responsibilities.</p>
+
+  <div class="divider"><span>Step-by-Step Order Flow</span></div>
+
+  <div class="grid-2">
+    <div class="card accent-green">
+      <h4>Step 1: Order Placement</h4>
+      <p>Client places an order via broker's app, website, or Call & Trade. The order enters the broker's <strong>OMS (Order Management System)</strong>. RMS (Risk Management System) checks available margin. If insufficient margin, order is rejected before hitting the exchange.</p>
+      <div class="callout risk" style="margin-top:0.8rem">
+        <span class="callout-icon">⚠</span>
+        <div class="callout-body"><h4>SEBI Margin Rule</h4><p>Since Sep 2021, brokers must collect 100% upfront margin (SPAN + Exposure for F&O, VAR + ELM for equity) before allowing an order. No leverage beyond collected margin is permissible.</p></div>
+      </div>
+    </div>
+    <div class="card accent-blue">
+      <h4>Step 2: Exchange Matching</h4>
+      <p>Order is routed to the exchange via the broker's <strong>EMS (Execution Management System)</strong> using FIX protocol or NSE/BSE NEAT/BOLT APIs. The exchange matching engine matches buy and sell orders on price-time priority. Trade confirmed back to broker in milliseconds.</p>
+      <p style="margin-top:0.5rem">NSE's matching engine processes millions of orders per second. Co-location facilities at NSE's data center in Mumbai allow HFT firms to achieve sub-millisecond response times.</p>
+    </div>
+    <div class="card accent-gold">
+      <h4>Step 3: Trade Confirmation</h4>
+      <p>Broker receives trade confirmation from exchange. <strong>Contract note</strong> is issued to client electronically within 24 hours of trade (SEBI requirement). The contract note details: trade date, ISIN, quantity, price, brokerage, STT, GST, and net obligation.</p>
+      <p style="margin-top:0.5rem">Contract notes are legally binding documents and must be digitally signed by the broker. Clients must raise disputes within the time specified on the contract note.</p>
+    </div>
+    <div class="card accent-red">
+      <h4>Step 4: Clearing (Novation)</h4>
+      <p>NSCCL (for NSE trades) or ICCL (for BSE trades) steps in as <strong>Central Counterparty</strong>. Through legal novation, the original bilateral trade is replaced: NSCCL becomes the buyer to every seller and the seller to every buyer. This eliminates counterparty default risk for market participants.</p>
+    </div>
+    <div class="card accent-green">
+      <h4>Step 5: Settlement (T+1)</h4>
+      <p><strong>Pay-in Deadline</strong>: Selling clients must deliver shares (debit from demat) or funds to the clearing corporation by a specified time on T+1 (next business day). Shares move via NSDL/CDSL settlement mechanism.</p>
+      <p style="margin-top:0.5rem"><strong>Pay-out</strong>: Exchange pays funds to selling brokers and credits shares to buying brokers' pool accounts. Funds and shares then flow to respective client accounts.</p>
+    </div>
+    <div class="card accent-blue">
+      <h4>Step 6: Short Delivery and Auction</h4>
+      <p>If a seller fails to deliver shares on T+1 (short delivery), the exchange conducts a <strong>Close-Out/Auction</strong>. The exchange buys shares in the auction market and charges the cost plus a 20% penalty to the defaulting broker. This risk is passed to the client.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span>Order Types</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Order Type</th><th>How It Works</th><th>Best Used When</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">Market Order</td><td>Executes immediately at best available price. No price guarantee.</td><td>Highly liquid stocks (Nifty 50) when speed matters more than price</td></tr>
+        <tr><td class="mono">Limit Order</td><td>Executes only at your specified price or better. May not fill if market doesn't reach your price.</td><td>Mid/small caps, illiquid options, all situations where price certainty matters</td></tr>
+        <tr><td class="mono">SL-M (Stop Loss Market)</td><td>Triggers a market order when trigger price is hit.</td><td>Protecting profits or limiting losses when execution certainty is needed</td></tr>
+        <tr><td class="mono">SL-L (Stop Loss Limit)</td><td>Triggers a limit order when trigger price is hit. Risk of non-execution in fast markets.</td><td>When you want price protection even in the stop-loss execution</td></tr>
+        <tr><td class="mono">AMO (After Market Order)</td><td>Placed after 3:30pm, executed at market open next day.</td><td>When you cannot trade during market hours</td></tr>
+        <tr><td class="mono">IOC (Immediate or Cancel)</td><td>Fill as much as possible immediately, cancel the rest.</td><td>Block deals, institutional large orders</td></tr>
+        <tr><td class="mono">GTD / GTC</td><td>Good Till Day or Good Till Cancelled. Order persists across sessions.</td><td>Awaiting a specific entry price in a range-bound market</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"><span>Delivery vs Intraday vs BTST</span></div>
+  <div class="grid-3">
+    <div class="card accent-green">
+      <h4>Delivery (CNC)</h4>
+      <p>Buy and hold. Shares credited to demat after T+1 settlement. Full payment required. STT: 0.1% on both buy and sell.</p>
+    </div>
+    <div class="card accent-gold">
+      <h4>Intraday (MIS)</h4>
+      <p>Buy and sell on the same day. Auto square-off by broker if not closed manually. Lower margin required. STT: 0.025% on sell side only.</p>
+    </div>
+    <div class="card accent-blue">
+      <h4>BTST / ATST</h4>
+      <p>Buy Today Sell Tomorrow. Sell before shares are in your demat. Risk: if original seller defaults, you face short delivery penalty in subsequent auction. Not risk-free.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 04 PRODUCTS ════ -->
+<section id="products" class="section">
+  <div class="sec-title">Products &amp; <span>Segments</span></div>
+  <p class="sec-desc">A broker can be a member of multiple exchange segments. Each segment has its own instruments, margin rules, settlement, and regulatory requirements.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Segment</th><th>Exchange</th><th>Instruments</th><th>Settlement</th><th>Regulator</th></tr></thead>
+      <tbody>
+        <tr><td class="gold">Equity Cash</td><td>NSE CM, BSE Equity</td><td>Stocks, ETFs, InvITs, REITs</td><td>T+1 Rolling</td><td>SEBI</td></tr>
+        <tr><td class="gold">Equity F&O</td><td>NSE F&O, BSE F&O</td><td>Index/Stock Futures and Options</td><td>Daily MTM + Expiry</td><td>SEBI</td></tr>
+        <tr><td class="gold">Currency Derivatives</td><td>NSE CDS, BSE CDS</td><td>USD/INR, EUR/INR, GBP/INR, JPY/INR Futures and Options</td><td>Daily MTM</td><td>SEBI + RBI</td></tr>
+        <tr><td class="gold">Commodity</td><td>MCX, NCDEX</td><td>Gold, Silver, Crude Oil, Natural Gas, Agri commodities</td><td>Daily MTM + Delivery</td><td>SEBI</td></tr>
+        <tr><td class="gold">Debt / WDM</td><td>NSE WDM, BSE Debt</td><td>G-Secs, T-Bills, Corporate Bonds, SDL</td><td>T+2 (varies)</td><td>SEBI + RBI</td></tr>
+        <tr><td class="gold">SME Platform</td><td>NSE Emerge, BSE SME</td><td>Shares of SME companies</td><td>T+1</td><td>SEBI</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"><span>Equity Derivatives Deep Dive</span></div>
+
+  <div class="grid-2">
+    <div class="card accent-green">
+      <h3>Futures</h3>
+      <p>A standardized contract to buy or sell an underlying asset at a predetermined price on a specific future date (expiry). Traded on margin (initial SPAN margin typically 10 to 20% of contract value).</p>
+      <p style="margin-top:0.5rem"><strong>Example:</strong> Nifty 50 Futures, Lot Size: 75 units. If Nifty is at 22,000, one lot = Rs.16,50,000 notional. SPAN margin approximately Rs.1,20,000 to Rs.1,50,000. Profit/loss is the full Rs.750 per 10-point move (75 units x Rs.10).</p>
+      <p style="margin-top:0.5rem"><strong>Expiry:</strong> Last Thursday of the month for NSE index and stock futures. If Thursday is a holiday, previous trading day.</p>
+    </div>
+    <div class="card accent-blue">
+      <h3>Options</h3>
+      <p>The right (not obligation) to buy (Call) or sell (Put) the underlying at the Strike Price on or before Expiry. Buyer pays Premium, has limited loss (premium paid). Seller receives premium, has theoretically unlimited loss on calls.</p>
+      <p style="margin-top:0.5rem"><strong>Example:</strong> Nifty 22,000 Call at Rs.100 premium, Lot Size 75. Cost to buy: Rs.7,500. Profit if Nifty expires at 22,200: (22,200 - 22,000 - 100) x 75 = Rs.7,500.</p>
+      <p style="margin-top:0.5rem"><strong>Weekly Expiry:</strong> Nifty 50 (Thursday), BankNifty (Wednesday), FinNifty (Tuesday). This drives enormous intraday volumes in 0DTE (zero days to expiry) options.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span>Option Greeks (Essential Knowledge)</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Greek</th><th>Measures</th><th>Practical Meaning</th></tr></thead>
+      <tbody>
+        <tr><td class="mono green">Delta (Δ)</td><td>Change in option price per Rs.1 move in underlying</td><td>A 0.5 delta call moves Rs.0.50 for every Rs.1 move in Nifty. ATM options have ~0.5 delta. Deep ITM ~1. Far OTM ~0.05.</td></tr>
+        <tr><td class="mono green">Gamma (Γ)</td><td>Rate of change of Delta</td><td>How fast Delta changes. Highest at ATM near expiry. Creates explosive P&L near expiry for option buyers.</td></tr>
+        <tr><td class="mono red">Theta (Θ)</td><td>Time decay of option premium per day</td><td>Option sellers earn Theta daily. Buyers lose it. An ATM Nifty option loses ~Rs.2-5 per lot per day in time value, accelerating near expiry.</td></tr>
+        <tr><td class="mono green">Vega (V)</td><td>Change in option price per 1% change in Implied Volatility</td><td>Long options benefit from rising volatility (long Vega). Sellers suffer. India VIX is the market's volatility gauge. Buy options before events, sell after.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout note">
+    <span class="callout-icon">📌</span>
+    <div class="callout-body">
+      <h4>India VIX</h4>
+      <p>India VIX (Volatility Index) measures expected 30-day volatility of Nifty 50, derived from Nifty option prices. A VIX above 20 indicates high fear. Below 15 indicates complacency. During COVID (March 2020), India VIX hit 83. Typically ranges 12-18 in normal markets.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 05 AP MODEL ════ -->
+<section id="ap" class="section">
+  <div class="sec-title">The <span>AP Model</span></div>
+  <p class="sec-desc">The Authorized Person (AP) is the frontline of client acquisition and servicing in the broking business. Understanding this model is essential if you are entering the distribution side of the industry.</p>
+
+  <div class="callout sebi">
+    <span class="callout-icon">📋</span>
+    <div class="callout-body">
+      <h4>SEBI Circular: Sub-broker to AP (2016)</h4>
+      <p>SEBI circular CIR/HO/MIRSD/MIRSD2/CIR/P/2016/110 dated October 2016 abolished the sub-broker category and introduced Authorized Persons. All existing sub-brokers were required to migrate to the AP framework. Key change: APs do not have SEBI registration and cannot hold client funds.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span>Sub-broker vs AP: The Critical Difference</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Parameter</th><th>Sub-Broker (Pre-2016)</th><th>Authorized Person (Post-2016)</th></tr></thead>
+      <tbody>
+        <tr><td>Registration</td><td class="green">Directly with SEBI</td><td class="red">With Exchange, through Broker</td></tr>
+        <tr><td>Client Funds</td><td class="green">Could collect and hold</td><td class="red">Cannot hold. Must route through broker</td></tr>
+        <tr><td>Contract Notes</td><td class="green">Could issue own</td><td class="red">Broker issues in own name</td></tr>
+        <tr><td>Revenue</td><td>% of brokerage + advisory fees</td><td>Revenue sharing with broker only</td></tr>
+        <tr><td>Liability</td><td>Direct regulatory liability</td><td>Contractual liability to broker; broker liable to exchange</td></tr>
+        <tr><td>Compliance</td><td>SEBI inspections</td><td>Exchange inspections through broker</td></tr>
+        <tr><td>Minimum Net Worth</td><td>Rs.1 lakh</td><td>No prescribed minimum (broker determines)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"><span>What an AP Can and Cannot Do</span></div>
+  <div class="grid-2">
+    <div class="card accent-green">
+      <h4>AP Can</h4>
+      <ul>
+        <li>Source and onboard new clients for the broker</li>
+        <li>Assist clients in completing KYC documentation</li>
+        <li>Accept orders from clients and relay to broker/exchange</li>
+        <li>Provide information about products offered by the broker</li>
+        <li>Operate a branch office in the broker's name</li>
+        <li>Use broker's trading platform and back-office systems</li>
+        <li>Earn revenue sharing on brokerage generated from own clients</li>
+      </ul>
+    </div>
+    <div class="card accent-red">
+      <h4>AP Cannot</h4>
+      <ul>
+        <li>Collect or handle client funds (cash, cheques, online transfers)</li>
+        <li>Hold client securities in any account</li>
+        <li>Issue contract notes or trade confirmations independently</li>
+        <li>Advertise as a separate entity or create own brand for broking</li>
+        <li>Trade on behalf of clients without explicit authorization</li>
+        <li>Appoint sub-APs or further delegate client relationships</li>
+        <li>Offer guaranteed returns or assured profits</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"><span>AP Revenue Economics</span></div>
+  <div class="card accent-gold">
+    <h3>How an AP Earns</h3>
+    <p>The AP earns a percentage of the brokerage generated from clients they have onboarded. The split is negotiated with the broker and varies significantly:</p>
+    <div class="table-wrap" style="margin-top:1rem">
+      <table>
+        <thead><tr><th>AP Type</th><th>Typical Revenue Share</th><th>Who Bears Exchange/SEBI Fees</th></tr></thead>
+        <tbody>
+          <tr><td>Small AP (retail focus, below Rs.50L monthly brokerage)</td><td class="green">40 to 50%</td><td>Broker</td></tr>
+          <tr><td>Mid-tier AP (Rs.50L to Rs.2Cr monthly brokerage)</td><td class="green">50 to 65%</td><td>Negotiated</td></tr>
+          <tr><td>Large AP / Franchisee (above Rs.2Cr monthly brokerage)</td><td class="green">65 to 75%</td><td>AP pays some regulatory costs</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip" style="margin-top:1rem">
+      <span class="callout-icon">💡</span>
+      <div class="callout-body"><h4>Worked Example</h4><p>An AP's clients generate Rs.5 lakh/month in brokerage. At a 60% revenue share, the AP earns Rs.3 lakh/month gross. From this, the AP must pay office rent, salaries, and internet costs. Pure play F&O clients generate high brokerage volume but churn fast. Delivery clients are sticky but low brokerage.</p></div>
+    </div>
+  </div>
+
+  <div class="divider"><span>AP Registration Process</span></div>
+  <div class="grid-2">
+    <div class="card">
+      <h4>Eligibility Requirements</h4>
+      <ul>
+        <li>Individual: minimum 10+2 qualification. SEBI exam: NISM Series I or equivalent for relevant segment</li>
+        <li>Firm/Company: Authorized representative must meet above qualifications</li>
+        <li>No prior regulatory debarment by SEBI, exchanges, or other financial regulators</li>
+        <li>Clean CIBIL record is typically required by broker (varies)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Registration Steps</h4>
+      <ol>
+        <li>Identify sponsoring broker and sign AP agreement</li>
+        <li>Submit application to exchange (NSE/BSE) through broker</li>
+        <li>Exchange does background check and approves registration</li>
+        <li>AP gets exchange registration number (visible on broker's website)</li>
+        <li>GST registration required if annual revenue exceeds Rs.20 lakh threshold</li>
+        <li>Annual renewal of registration with exchange</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout risk">
+    <span class="callout-icon">⚠</span>
+    <div class="callout-body">
+      <h4>AP Liability Trap</h4>
+      <p>While APs cannot hold client funds, they are contractually responsible to the broker for clients they introduced. If an AP onboards a client who later defaults on margin, the AP may face claims from the broker. Always ensure complete KYC and financial suitability assessment of clients you onboard. Document everything.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 06 MARGINS ════ -->
+<section id="margins" class="section">
+  <div class="sec-title">Margins &amp; <span>Risk</span></div>
+  <p class="sec-desc">Margins are the financial guarantee that keeps the clearing system solvent. Understanding the margin framework is non-negotiable on the trading desk. Get this wrong and clients get auto-squared off, disputes follow, and penalties land on the broker.</p>
+
+  <div class="divider"><span>Margin Components for F&O</span></div>
+  <div class="grid-2">
+    <div class="card accent-green">
+      <h3>SPAN Margin</h3>
+      <p>Standard Portfolio Analysis of Risk. Developed by Chicago Mercantile Exchange (CME). Used by NSE and BSE for futures and options.</p>
+      <p style="margin-top:0.5rem">Calculates worst-case one-day loss by simulating <strong>16 risk scenarios</strong>: the underlying moves up or down in varying degrees, while volatility rises or falls. The highest loss across all 16 scenarios is the SPAN margin requirement.</p>
+      <p style="margin-top:0.5rem">SPAN is recalculated intraday. A sharp move in the market mid-session can trigger a margin call even on open positions.</p>
+    </div>
+    <div class="card accent-gold">
+      <h3>Exposure Margin</h3>
+      <p>An additional buffer over SPAN, charged by exchanges. Covers residual risk not captured by SPAN scenarios. Typically:</p>
+      <ul style="margin-top:0.5rem">
+        <li>Index Futures: 3% of contract value</li>
+        <li>Stock Futures: 5% of contract value (higher for illiquid stocks)</li>
+        <li>Options (sellers only): 3% for index, 5% for stocks</li>
+      </ul>
+      <p style="margin-top:0.5rem"><strong>Total F&O Margin = SPAN + Exposure.</strong> Brokers cannot allow positions where collected margin falls below this total.</p>
+    </div>
+    <div class="card accent-blue">
+      <h3>VAR Margin (Equity Cash)</h3>
+      <p>Value at Risk margin for equity delivery positions. Based on statistical daily price range (99% confidence interval, 1-day holding period). Calculated by NSE/BSE using historical price data.</p>
+      <p style="margin-top:0.5rem">Liquid large-cap stocks: VAR typically 5 to 8%. Illiquid small-caps: VAR can be 30%+. Updated daily by exchange and published on NSE website.</p>
+    </div>
+    <div class="card accent-red">
+      <h3>ELM (Extreme Loss Margin)</h3>
+      <p>Extreme Loss Margin for equity. Additional buffer over VAR for tail-risk scenarios not captured by statistical models. Exchange prescribed, currently 1.5% to 5% depending on stock liquidity category.</p>
+      <p style="margin-top:0.5rem"><strong>Total Equity Intraday Margin = VAR + ELM.</strong> For delivery buy positions, SEBI's new rule requires upfront collection of VAR + ELM on buy side as well.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span>Peak Margin Requirement (Post Sep 2021)</span></div>
+  <div class="callout sebi">
+    <span class="callout-icon">📋</span>
+    <div class="callout-body">
+      <h4>SEBI Circular: Upfront Margin Collection</h4>
+      <p>SEBI circular SEBI/HO/MRD2/DCAP/CIR/P/2020/127 (Jul 2020) introduced peak margin reporting. Implemented in phases. From September 2021, brokers must collect 100% of the required margin upfront before allowing any new position. The exchange takes four intraday snapshots to check peak margin. Shortfall triggers a penalty: 0.5% per day for first 3 days, 1% per day thereafter.</p>
+    </div>
+  </div>
+
+  <p>This regulation eliminated the practice of leveraging clients beyond their capital. Before peak margin, brokers routinely offered 10x to 20x intraday leverage. Post Sep 2021, leverage is constrained to the margin framework.</p>
+
+  <div class="divider"><span>Mark to Market (MTM) Settlement</span></div>
+  <div class="card accent-gold">
+    <h3>Daily MTM for F&O Positions</h3>
+    <p>All open futures positions are settled daily to their closing price. The daily settlement price for index futures is the weighted average of the last 30 minutes of trading. For stock futures, it is the last traded price subject to a ±1% circuit filter.</p>
+    <p style="margin-top:0.6rem"><strong>Worked Example:</strong> You are long 1 lot of Nifty Futures bought at 22,000. Closing price on Day 1: 21,800. MTM loss = (22,000 - 21,800) x 75 = Rs.15,000. This Rs.15,000 is debited from your account overnight. If account balance falls below minimum margin, you receive a margin call. Failure to top up by next morning leads to auto-square off.</p>
+  </div>
+
+  <div class="divider"><span>Margin Pledge and Re-Pledge System</span></div>
+  <div class="callout sebi">
+    <span class="callout-icon">📋</span>
+    <div class="callout-body">
+      <h4>New Pledge System (SEBI 2020)</h4>
+      <p>Prior to August 2020, brokers held client securities in a pool account to offer as collateral. SEBI circular SEBI/HO/MIRSD/MIRSD2/CIR/P/2020/28 mandated a pledge/re-pledge mechanism. Clients must now explicitly pledge securities to the broker via the depository system (NSDL/CDSL), and brokers re-pledge to clearing corporations. Securities never leave the client's demat account, eliminating broker misuse risk. Haircut: 15 to 50% depending on security.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span>RMS (Risk Management System)</span></div>
+  <div class="grid-2">
+    <div class="card">
+      <h4>What RMS Does</h4>
+      <ul>
+        <li>Validates margin availability before every order</li>
+        <li>Sets maximum loss limits per client per day</li>
+        <li>Triggers auto-square off if MTM loss exceeds configured threshold</li>
+        <li>Blocks accounts with debit balances or insufficient margin</li>
+        <li>Generates margin calls and payment reminders</li>
+        <li>Reports peak margin snapshots to exchange</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>RMS Parameters Set by Broker</h4>
+      <ul>
+        <li><strong>Max loss limit:</strong> Auto-square-off if daily loss exceeds X%</li>
+        <li><strong>Scrip-level limits:</strong> Max position in illiquid or circuit-bound stocks</li>
+        <li><strong>Segment limits:</strong> Max exposure in F&O vs equity</li>
+        <li><strong>Net worth limit:</strong> Cap on total exposure relative to client's declared income</li>
+        <li><strong>Freeze list:</strong> Stocks blocked for trading (surveillance, circuit, operator activity)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 07 COMPLIANCE ════ -->
+<section id="compliance" class="section">
+  <div class="sec-title">Compliance &amp; <span>KYC</span></div>
+  <p class="sec-desc">Compliance is not a back-office function. It is a first-line-of-defense discipline. Regulatory violations in broking attract heavy penalties, debarment, and reputational damage. Know the rules.</p>
+
+  <div class="divider"><span>KYC Framework</span></div>
+  <div class="grid-2">
+    <div class="card accent-blue">
+      <h3>Documents Required (Individual Client)</h3>
+      <ul>
+        <li><strong>PAN Card:</strong> Mandatory for all investment accounts. Linked to Aadhaar since 2017. SEBI rule: no PAN = no trading account</li>
+        <li><strong>Aadhaar:</strong> Used for eKYC and address proof. Masked Aadhaar accepted for privacy</li>
+        <li><strong>Bank Account Proof:</strong> Cancelled cheque or bank statement (must match account holder name)</li>
+        <li><strong>Photograph:</strong> Recent passport size or captured digitally</li>
+        <li><strong>Income Proof:</strong> For F&O trading: 6 months bank statement, ITR, or salary slip. Required to assess financial suitability</li>
+        <li><strong>Signature:</strong> Physical or digital</li>
+      </ul>
+    </div>
+    <div class="card accent-green">
+      <h3>KYC Process Flow</h3>
+      <ol>
+        <li>Client submits documents (physical or digital via app/DigiLocker)</li>
+        <li>In-Person Verification (IPV): Client must be verified physically or via video KYC</li>
+        <li>Data uploaded to KRA (KYC Registration Agency): CAMS KRA, Karvy KRA, NDML, CDSL Ventures</li>
+        <li>CKYC (Central KYC Registry under CERSAI): One-time KYC for all financial services</li>
+        <li>Account activation after exchange registration and UCC (Unique Client Code) generation</li>
+        <li>Risk profiling for F&O segment access</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout sebi">
+    <span class="callout-icon">📋</span>
+    <div class="callout-body">
+      <h4>Nomination Mandate (SEBI 2023)</h4>
+      <p>SEBI circular dated July 2022 (effective March 2023) made nomination mandatory for all demat and trading accounts. Existing clients had to either add a nominee or submit a declaration opting out. Non-compliance resulted in account freeze for debits. As of 2023, brokers had to ensure 100% compliance for active accounts.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span>PMLA Obligations</span></div>
+  <div class="card accent-red">
+    <h3>Prevention of Money Laundering Act (PMLA) 2002</h3>
+    <p>Brokers are "Reporting Entities" under PMLA. This means specific obligations:</p>
+    <ul style="margin-top:0.8rem">
+      <li><strong>CTR (Cash Transaction Report):</strong> Report all cash transactions above Rs.10 lakh to FIU-IND (Financial Intelligence Unit) within 7 days</li>
+      <li><strong>STR (Suspicious Transaction Report):</strong> Report any transaction that appears unusual or suspicious regardless of amount, within 7 days of suspicion</li>
+      <li><strong>Record Keeping:</strong> Maintain all client records for minimum 5 years</li>
+      <li><strong>Client Due Diligence (CDD):</strong> Enhanced due diligence for politically exposed persons (PEPs), high-value clients, and clients from high-risk jurisdictions</li>
+      <li><strong>Principal Officer:</strong> Designated compliance officer responsible for PMLA reporting to FIU-IND</li>
+    </ul>
+  </div>
+
+  <div class="divider"><span>SEBI (Stock Brokers) Regulations Key Requirements</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Requirement</th><th>Frequency / Deadline</th><th>Consequence of Default</th></tr></thead>
+      <tbody>
+        <tr><td>Client Funds Segregation: client funds in separate escrow bank account</td><td class="mono">Daily</td><td>Regulatory action, penalty up to Rs.25Cr</td></tr>
+        <tr><td>Quarterly Settlement: return unused client funds/securities to client</td><td class="mono">Quarterly (Mar/Jun/Sep/Dec)</td><td>Penalty, debit of interest to broker</td></tr>
+        <tr><td>Contract Note Issuance</td><td class="mono">By next working day</td><td>Rs.10,000 per instance penalty</td></tr>
+        <tr><td>Peak Margin Reporting to Exchange</td><td class="mono">4 intraday snapshots daily</td><td>0.5% to 1% per day on shortfall</td></tr>
+        <tr><td>Investor Grievance Resolution (SEBI SCORES)</td><td class="mono">15 working days</td><td>Adverse finding in exchange inspection</td></tr>
+        <tr><td>Net Worth Certificate (CA certified)</td><td class="mono">Annual</td><td>Exchange can suspend trading membership</td></tr>
+        <tr><td>Annual Compliance Report to Exchange</td><td class="mono">Annual</td><td>Exchange penalty, suspension</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"><span>DDPI: Replacing the POA</span></div>
+  <div class="callout tip">
+    <span class="callout-icon">💡</span>
+    <div class="callout-body">
+      <h4>DDPI (Demat Debit and Pledge Instruction)</h4>
+      <p>Prior to 2022, brokers collected a blanket Power of Attorney (POA) from clients authorizing the broker to debit the demat account. SEBI circular (October 2022) replaced this with DDPI, effective April 1, 2023. DDPI limits the broker's authority to only three actions: (1) settlement of trades, (2) pledging for margin, and (3) tender of securities in open offers/buybacks. The broker cannot misuse DDPI to move shares for non-trading purposes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 08 REVENUE ════ -->
+<section id="revenue" class="section">
+  <div class="sec-title">Revenue <span>Model</span></div>
+  <p class="sec-desc">Understanding how a brokerage makes money tells you what gets prioritized, what products get pushed, and where the incentives lie. Know the P&L before you join the desk.</p>
+
+  <div class="divider"><span>Revenue Streams</span></div>
+  <div class="grid-2">
+    <div class="card accent-green">
+      <div class="card-icon">📈</div>
+      <h3>Brokerage Income</h3>
+      <p>Core revenue. Fee charged per transaction. Two dominant models:</p>
+      <p style="margin-top:0.5rem"><strong>Full-Service:</strong> Percentage of trade value. Typically 0.2 to 0.5% on equity delivery, 0.02 to 0.05% on F&O turnover. High-value HNI accounts negotiated lower.</p>
+      <p style="margin-top:0.5rem"><strong>Discount:</strong> Flat Rs.20 per executed order (Zerodha/Upstox model) or zero for equity delivery. Revenue driven by high order volume and F&O activity.</p>
+    </div>
+    <div class="card accent-blue">
+      <div class="card-icon">🏦</div>
+      <h3>Interest Income / Margin Funding</h3>
+      <p>Brokers with NBFC (Non-Banking Financial Company) arms offer margin trading facility (MTF) to clients. Clients borrow to buy stocks, broker charges 18 to 24% annualized interest on the funded amount.</p>
+      <p style="margin-top:0.5rem">Also: float income on client funds maintained in the broker's bank accounts. Large brokers hold thousands of crores in client credit balances overnight, earning overnight call money rates.</p>
+    </div>
+    <div class="card accent-gold">
+      <div class="card-icon">📦</div>
+      <h3>DP (Depository Participant) Charges</h3>
+      <p>Brokers act as DPs for NSDL or CDSL. Revenue from:</p>
+      <ul style="margin-top:0.4rem">
+        <li>Account opening fee (one-time, increasingly waived)</li>
+        <li>Annual maintenance charge (Rs.200 to Rs.750 per year)</li>
+        <li>Transaction charges: typically Rs.13 to Rs.20 per debit instruction (demat debit on sale)</li>
+        <li>Pledge creation and closure charges</li>
+      </ul>
+      <p style="margin-top:0.4rem">DP income is small per transaction but scales with millions of accounts.</p>
+    </div>
+    <div class="card accent-green">
+      <div class="card-icon">💼</div>
+      <h3>Distribution Income</h3>
+      <p>Commissions earned by distributing third-party products:</p>
+      <ul style="margin-top:0.4rem">
+        <li><strong>Mutual Funds:</strong> Trail commission (0.4 to 1% p.a. on AUM under distribution). Requires ARN. No upfront commission since 2018 SEBI circular.</li>
+        <li><strong>Insurance:</strong> First-year and renewal commissions. Requires IRDA license via partner or own subsidiary</li>
+        <li><strong>IPOs:</strong> ASBA facilitation fee, anchor book building involvement for large brokers</li>
+        <li><strong>Bonds/NCD:</strong> Distribution fee from issuer</li>
+      </ul>
+    </div>
+    <div class="card accent-red">
+      <div class="card-icon">📊</div>
+      <h3>Research and Advisory</h3>
+      <p>Full-service brokers monetize research through:</p>
+      <ul style="margin-top:0.4rem">
+        <li>Paid research subscriptions (Rs.5,000 to Rs.50,000 per year for retail)</li>
+        <li>Institutional research: sold to FPIs, AIFs, domestic MFs. Revenue via soft dollar arrangements or direct fees</li>
+        <li>Investment Advisory (IA): SEBI-registered IA can charge clients for financial planning. Capped at 2.5% of AUM per year or Rs.75,000 flat per annum (SEBI IA regulations 2020)</li>
+      </ul>
+    </div>
+    <div class="card accent-blue">
+      <div class="card-icon">🔧</div>
+      <h3>Other Income</h3>
+      <ul>
+        <li><strong>Call and Trade:</strong> Rs.20 to Rs.50 per order placed via phone (offline surcharge)</li>
+        <li><strong>Algo / API Access:</strong> Subscription fees for automated trading API access</li>
+        <li><strong>Account Transfer Charges:</strong> Fee for transferring positions to/from other brokers</li>
+        <li><strong>SMS/2FA premium:</strong> Some brokers charge for additional OTP services</li>
+        <li><strong>Corporate Actions:</strong> Custody fees on dividends, rights issues, buyback tendering</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"><span>Full-Service vs Discount: Unit Economics</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Metric</th><th>Full-Service Broker</th><th>Discount Broker</th></tr></thead>
+      <tbody>
+        <tr><td>Avg brokerage per trade</td><td class="green">Rs.200 to Rs.500</td><td class="green">Rs.0 to Rs.20</td></tr>
+        <tr><td>Revenue per active client per year</td><td class="green">Rs.8,000 to Rs.25,000</td><td class="green">Rs.800 to Rs.3,000</td></tr>
+        <tr><td>Cost of acquisition per client</td><td class="red">Rs.5,000 to Rs.15,000</td><td class="red">Rs.300 to Rs.800</td></tr>
+        <tr><td>Breakeven period</td><td>6 to 18 months</td><td>3 to 6 months</td></tr>
+        <tr><td>Payback via</td><td>Advisory, MF distribution, margin funding</td><td>F&O volume, DP charges, paid tools</td></tr>
+        <tr><td>Risk concentration</td><td>HNI client concentration</td><td>F&O activity concentration (regulatory risk)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout note">
+    <span class="callout-icon">📌</span>
+    <div class="callout-body">
+      <h4>The F&O Risk for Discount Brokers</h4>
+      <p>Discount brokers generate disproportionate revenue from F&O trading. SEBI data shows over 90% of F&O traders lose money. Regulatory changes targeting F&O volumes (lot size increases, strikes rationalization) directly threaten this revenue stream. SEBI's consultation paper on F&O measures (2024) has significant implications for discount broker economics.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 09 CAREER ════ -->
+<section id="career" class="section">
+  <div class="sec-title">Career &amp; <span>Certifications</span></div>
+  <p class="sec-desc">The broking industry offers varied career paths: client-facing, research, risk, operations, technology, and compliance. Here is the map.</p>
+
+  <div class="divider"><span>Career Tracks</span></div>
+  <div class="grid-2">
+    <div class="card accent-green">
+      <h3>Sales and Relationship Management</h3>
+      <p><strong>Roles:</strong> AP, Dealer, Relationship Manager (RM), Branch Manager, Key Account Manager (KAM for HNIs and corporates).</p>
+      <p style="margin-top:0.5rem"><strong>Day-to-day:</strong> Client acquisition, portfolio reviews, product recommendations, handling client queries, margin reminders, resolving disputes.</p>
+      <p style="margin-top:0.5rem"><strong>Compensation:</strong> Base + variable (typically 20 to 40% of gross brokerage generated from portfolio). High performers earn Rs.8 to Rs.25 lakh CTC in first 3 years.</p>
+    </div>
+    <div class="card accent-blue">
+      <h3>Equity Research</h3>
+      <p><strong>Roles:</strong> Research Associate, Equity Analyst, Senior Analyst, Head of Research.</p>
+      <p style="margin-top:0.5rem"><strong>Day-to-day:</strong> Financial modelling, earnings analysis, sector reports, company visits, quarterly result notes, thematic research.</p>
+      <p style="margin-top:0.5rem"><strong>SEBI Requirement:</strong> Research Analyst (RA) registration with SEBI required to publish research. Exam: NISM Series XV (Research Analyst).</p>
+      <p style="margin-top:0.5rem"><strong>Salary range:</strong> Rs.5 to Rs.15 lakh (associate level). Senior analyst at top brokers: Rs.30 to Rs.80 lakh.</p>
+    </div>
+    <div class="card accent-gold">
+      <h3>Dealing and Trading</h3>
+      <p><strong>Roles:</strong> Dealer, Senior Dealer, Head Dealer. Institutional desks have Equity Sales Trader, Execution Trader.</p>
+      <p style="margin-top:0.5rem"><strong>Day-to-day:</strong> Executing client orders on the terminal, monitoring positions, managing order books, handling Call and Trade orders.</p>
+      <p style="margin-top:0.5rem"><strong>Exam:</strong> NCFM Dealers Module or NISM Series VII (Securities Operations). Dealer terminal access requires exchange-approved certification.</p>
+    </div>
+    <div class="card accent-red">
+      <h3>Risk Management</h3>
+      <p><strong>Roles:</strong> Risk Analyst, RMS Executive, Chief Risk Officer.</p>
+      <p style="margin-top:0.5rem"><strong>Day-to-day:</strong> Monitoring real-time margin utilization, managing auto-square-off parameters, setting client limits, margin shortfall tracking, peak margin reporting.</p>
+      <p style="margin-top:0.5rem">Risk roles are increasingly critical post-peak-margin regulations. Strong understanding of SPAN, VAR, and options Greeks essential.</p>
+    </div>
+    <div class="card accent-green">
+      <h3>Compliance</h3>
+      <p><strong>Roles:</strong> Compliance Executive, Principal Officer (PMLA), Chief Compliance Officer (CCO).</p>
+      <p style="margin-top:0.5rem"><strong>Day-to-day:</strong> SEBI/Exchange regulatory filings, internal policy updates, audit coordination, KYC oversight, investor grievance management via SEBI SCORES, surveillance reports.</p>
+      <p style="margin-top:0.5rem">CCO must be a Key Managerial Personnel. Qualification requirement: CS (Company Secretary) or Law graduate preferred. NISM Series VII mandatory.</p>
+    </div>
+    <div class="card accent-blue">
+      <h3>Operations (Back Office)</h3>
+      <p><strong>Roles:</strong> Settlements, DP Operations, Fund Accounting, Reconciliation, IT/Tech.</p>
+      <p style="margin-top:0.5rem"><strong>Day-to-day:</strong> Reconciling exchange pay-in/pay-out, DP settlement, contract note generation, client ledger maintenance, fund transfer processing.</p>
+      <p style="margin-top:0.5rem">Often the entry point for finance graduates. Strong Excel, back-office software (Flattrade, Omnesys, OMEX) skills valued.</p>
+    </div>
+  </div>
+
+  <div class="divider"><span>Typical Career Progression</span></div>
+  <div class="career-path">
+    <div class="cp-step"><div class="cp-level">Year 0 to 1</div><div class="cp-title">Trainee / Intern</div><div class="cp-yr">Rs.2 to Rs.4L</div></div>
+    <div class="cp-step"><div class="cp-level">Year 1 to 3</div><div class="cp-title">Executive / Associate</div><div class="cp-yr">Rs.4 to Rs.8L</div></div>
+    <div class="cp-step"><div class="cp-level">Year 3 to 6</div><div class="cp-title">Senior Executive / AM</div><div class="cp-yr">Rs.8 to Rs.15L</div></div>
+    <div class="cp-step"><div class="cp-level">Year 6 to 10</div><div class="cp-title">Manager / AVP</div><div class="cp-yr">Rs.15 to Rs.30L</div></div>
+    <div class="cp-step"><div class="cp-level">Year 10+</div><div class="cp-title">VP / Head / CXO</div><div class="cp-yr">Rs.30L+</div></div>
+  </div>
+
+  <div class="divider"><span>NISM Certifications (Mandatory and Recommended)</span></div>
+  <div class="cert-grid">
+    <div class="cert-card"><span class="cert-code">NISM SERIES I</span><div class="cert-name">Currency Derivatives</div><div class="cert-req">Mandatory for currency segment dealers and APs handling currency products. 100 questions, 2 hours, passing 60%.</div></div>
+    <div class="cert-card"><span class="cert-code">NISM SERIES V-A</span><div class="cert-name">Mutual Fund Distributors</div><div class="cert-req">Required for ARN (AMFI Registration Number). Mandatory to distribute MFs. Most common entry-level certification.</div></div>
+    <div class="cert-card"><span class="cert-code">NISM SERIES VII</span><div class="cert-name">Securities Operations and Risk Management</div><div class="cert-req">Recommended for operations, compliance, and dealing roles. Covers clearing, settlement, regulatory framework.</div></div>
+    <div class="cert-card"><span class="cert-code">NISM SERIES VIII</span><div class="cert-name">Equity Derivatives</div><div class="cert-req">Required for equity F&O dealers and APs. Covers futures, options, Greeks, clearing. Very important for F&O desk roles.</div></div>
+    <div class="cert-card"><span class="cert-code">NISM SERIES X-A &amp; X-B</span><div class="cert-name">Investment Adviser (Level 1 and 2)</div><div class="cert-req">Required for SEBI Investment Adviser (IA) registration. Level 1: products and markets. Level 2: financial planning and portfolio management.</div></div>
+    <div class="cert-card"><span class="cert-code">NISM SERIES XV</span><div class="cert-name">Research Analyst</div><div class="cert-req">Required for SEBI Research Analyst registration. For equity research roles at brokers. Covers fundamental analysis, research report standards.</div></div>
+    <div class="cert-card"><span class="cert-code">NCFM DEALERS MODULE</span><div class="cert-name">NSE's Dealer Certification</div><div class="cert-req">NSE's own certification for dealer terminal access. Required for sub-broker and AP roles under NSE guidelines. Separate from NISM.</div></div>
+    <div class="cert-card"><span class="cert-code">CFA (CFA INSTITUTE)</span><div class="cert-name">Chartered Financial Analyst</div><div class="cert-req">International gold standard for investment research. 3 levels. Highly valued for research analyst and portfolio management roles. Not mandatory but career-defining.</div></div>
+  </div>
+
+  <div class="callout tip" style="margin-top:1.5rem">
+    <span class="callout-icon">💡</span>
+    <div class="callout-body">
+      <h4>Exam Strategy</h4>
+      <p>For a fresh finance graduate, certify in this order: (1) NISM Series V-A for MF distribution license, (2) NISM Series VIII for F&O desk credibility, (3) NISM Series VII for operations and compliance understanding. Combined cost under Rs.5,000. Returns immediate employability in front, middle, and back office roles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 10 GLOSSARY ════ -->
+<section id="glossary" class="section">
+  <div class="sec-title">Industry <span>Glossary</span></div>
+  <p class="sec-desc">The desk speaks a different language. Learn these before your first week.</p>
+
+  <div id="glossContainer"></div>
+</section>
+
+</div><!-- end .page -->
+
+<footer>
+  <div class="page">
+    <div class="ft">THE DESK GUIDE // INDIAN BROKING INDUSTRY</div>
+    <p>Content based on SEBI regulations, NSE/BSE circulars, and standard industry practice as of 2025.<br>Regulations change frequently. Always verify against the latest SEBI circulars at sebi.gov.in and exchange guidelines at nseindia.com / bseindia.com.</p>
+    <p style="margin-top:0.5rem; font-size:0.75rem">This guide is for educational purposes only and does not constitute investment advice.</p>
+  </div>
+</footer>
+
+<script>
+// ── TICKER ──
+const tData=[
+  {name:'NIFTY 50',val:'24,328.15',chg:'+0.62%',up:true},
+  {name:'SENSEX',val:'80,116.49',chg:'+0.58%',up:true},
+  {name:'BANK NIFTY',val:'52,463.20',chg:'+0.84%',up:true},
+  {name:'NIFTY IT',val:'34,520.75',chg:'-0.33%',up:false},
+  {name:'INDIA VIX',val:'14.32',chg:'-1.24%',up:false},
+  {name:'MIDCAP 150',val:'18,922.40',chg:'+0.91%',up:true},
+  {name:'USD/INR',val:'83.42',chg:'+0.08%',up:false},
+  {name:'GOLD MCX',val:'72,310',chg:'+0.41%',up:true},
+  {name:'CRUDE MCX',val:'6,841',chg:'-0.67%',up:false},
+  {name:'NIFTY SMALLCAP',val:'8,214.60',chg:'+1.12%',up:true},
+  {name:'FII FLOW',val:'-Rs.1,240Cr',chg:'Today',up:false},
+  {name:'DII FLOW',val:'+Rs.2,180Cr',chg:'Today',up:true},
+];
+const track=document.getElementById('ticker');
+const items=[...tData,...tData].map(d=>`<div class="ticker-item"><span class="name">${d.name}</span><span class="val">${d.val}</span><span class="chg ${d.up?'up':'dn'}">${d.chg}</span></div>`).join('');
+track.innerHTML=items;
+
+// ── NAV ──
+function show(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:document.querySelector('nav').offsetTop-1,behavior:'smooth'});
+}
+
+// ── GLOSSARY ──
+const GLOSS=[
+  ['AMO (After Market Order)','An order placed after market hours (3:30 PM). Executed at the opening of the next trading session. Useful for investors who cannot monitor markets during the trading day.'],
+  ['AP (Authorized Person)','An individual or firm appointed by a SEBI-registered broker (Trading Member) as an agent to acquire and service clients. APs cannot hold client funds. Registered with the exchange through the broker, not directly with SEBI.'],
+  ['ARN (AMFI Registration Number)','A registration number issued by AMFI (Association of Mutual Funds in India) to distributors of mutual funds. Mandatory for receiving commissions on MF distribution. Obtained after passing NISM Series V-A exam.'],
+  ['Ask / Offer Price','The lowest price at which a seller is willing to sell a security. The counterpart to the Bid price. The spread between bid and ask is the transaction cost for market makers.'],
+  ['ATST / BTST','Sell Tomorrow (ATST: Sell Today) or Buy Today Sell Tomorrow (BTST). Selling shares on T+1 before they are credited to your demat. Carries short delivery risk if the original seller defaults.'],
+  ['Bid Price','The highest price a buyer is willing to pay for a security. Market depth shows multiple bid and ask levels and quantities.'],
+  ['BSE (Bombay Stock Exchange)','Asia\'s oldest stock exchange, established 1875 in Mumbai. Benchmark index: BSE Sensex (30 stocks). Over 5,000 companies listed. Home of the SME platform for small businesses.'],
+  ['Call Option','An option giving the buyer the right, but not the obligation, to buy the underlying asset at the strike price before or at expiry. Profitable when the underlying rises above the strike plus premium paid.'],
+  ['CDSL (Central Depository Services Ltd)','One of two depositories in India (alongside NSDL). Promoted by BSE. Holds equity shares, bonds, and mutual fund units in electronic (demat) form. Listed company on NSE.'],
+  ['Circuit Breaker (Price Band)','An upper or lower limit on a stock\'s price movement in a single trading session. Circuit limits: 2%, 5%, 10%, or 20% depending on the stock. When hit, trading halts temporarily. Index-level circuit breakers at 10%, 15%, 20% of previous close.'],
+  ['CNC (Cash and Carry)','Order type for delivery-based equity buying. Full payment required. Shares credited to demat after T+1 settlement. No auto-square off.'],
+  ['CKYC','Central KYC Registry maintained by CERSAI (Central Registry of Securitisation Asset Reconstruction and Security Interest of India). One-time KYC for all financial services. Eliminates need for re-KYC across different financial institutions.'],
+  ['Contract Note','Legally binding confirmation of a trade issued by the broker to the client. Must be issued within 24 hours. Contains trade details, all charges (brokerage, STT, GST, exchange fees), and net obligation.'],
+  ['DDPI (Demat Debit and Pledge Instruction)','Replaced the blanket Power of Attorney (POA) from April 2023. Limits the broker\'s authority over client demat to three specific actions: trade settlement, pledge creation for margin, and tender in corporate actions.'],
+  ['Delivery-Based Trading','Buying equity shares with the intention of holding beyond the same trading day. Shares are credited to the demat account after T+1 settlement.'],
+  ['Delta','An option Greek measuring how much the option price changes for every Rs.1 change in the underlying. ATM options have delta of approximately 0.5. Deep ITM approaches 1.0. Far OTM approaches 0.'],
+  ['DII (Domestic Institutional Investor)','Indian institutions investing in securities markets: mutual funds, insurance companies (LIC, private insurers), pension funds (NPS, EPFO). Act as counter-balance to FPI flows.'],
+  ['DMA (Direct Market Access)','Technology that allows institutional clients to send orders directly to the exchange\'s matching engine without the broker\'s manual intervention. Used by large institutional investors and HFTs. Requires SEBI approval.'],
+  ['DP (Depository Participant)','An intermediary between depositories (NSDL/CDSL) and investors. Brokers act as DPs. DP maintains client demat accounts, executes debit instructions for settlement, and facilitates pledge/hypothecation.'],
+  ['ELM (Extreme Loss Margin)','Additional margin over VAR for equity. Covers losses beyond what VAR captures (tail risk). Currently 1.5% to 5% of position value depending on stock category.'],
+  ['Expiry','The date on which a derivatives contract ceases to exist. For NSE equity futures and options: last Thursday of the month. Weekly options (Nifty 50 Thursday, BankNifty Wednesday, FinNifty Tuesday) expire every week.'],
+  ['FII / FPI (Foreign Institutional / Portfolio Investor)','Foreign entities registered with SEBI to invest in Indian securities. FPIs include sovereign wealth funds, pension funds, mutual funds, and hedge funds domiciled outside India. FPI flows significantly influence large-cap stock prices.'],
+  ['FIU-IND','Financial Intelligence Unit of India. Government body that receives, processes, and analyzes Suspicious Transaction Reports (STRs) and Cash Transaction Reports (CTRs) from reporting entities including brokers under PMLA.'],
+  ['Futures','A standardized exchange-traded contract to buy or sell an underlying asset at a predetermined price at a future date. Both parties are obligated to fulfill the contract. Daily MTM settlement. Can result in unlimited loss if unhedged.'],
+  ['Gamma','Option Greek measuring the rate of change of Delta. Highest at ATM near expiry. Creates explosive non-linear P&L near expiry. Dangerous for option sellers near expiry (short Gamma).'],
+  ['GST on Broking','18% GST applies on brokerage and all statutory charges. Brokers must issue GST invoices. Input tax credit available for registered businesses.'],
+  ['ICCL (Indian Clearing Corporation Ltd)','Clearing corporation for BSE. Subsidiary of BSE. Acts as central counterparty (CCP) for all trades on BSE, guaranteeing settlement even if a member defaults.'],
+  ['IPO (Initial Public Offering)','First sale of shares by a company to the public. ASBA (Application Supported by Blocked Amount) is the mandatory application method. Funds are blocked in the investor\'s bank account until allotment.'],
+  ['ISIN (International Securities Identification Number)','Unique 12-character alphanumeric code identifying a security. Format: IN + 9 digits + check digit (e.g., INE009A01021 for Infosys). Used in all demat and settlement transactions.'],
+  ['KRA (KYC Registration Agency)','Agencies that centrally store KYC data on behalf of SEBI. Client KYC done once with any SEBI-regulated intermediary is accessible to all others through KRAs. Reduces duplication.'],
+  ['Lot Size','The minimum number of units per derivatives contract. Set by exchanges. Nifty 50 lot size: 75 units. Bank Nifty: 30 units. Stock lot sizes vary. Changed periodically by exchanges based on contract value guidelines.'],
+  ['MCX (Multi Commodity Exchange)','India\'s largest commodity derivatives exchange. Regulated by SEBI. Key products: gold, silver, crude oil, natural gas, base metals. Benchmark for Indian commodity prices.'],
+  ['MIS (Margin Intraday Square Off)','Order product type for intraday equity positions. Lower margin requirement. Positions auto-squared off by broker (typically by 3:15 to 3:20 PM) if not closed manually.'],
+  ['MTF (Margin Trading Facility)','Facility allowing clients to buy securities beyond their available cash. Client provides partial margin, broker funds the rest at 18 to 24% p.a. interest. SEBI prescribes eligible securities and minimum margins.'],
+  ['MTM (Mark to Market)','Daily valuation of open derivatives positions at closing price. P&L settled daily. MTM loss debited from client account overnight. MTM gain credited. Prevents accumulation of large unsettled losses.'],
+  ['MWPL (Market Wide Position Limit)','Maximum total open interest permitted across all market participants in a single stock\'s derivatives. When aggregate OI reaches 95% of MWPL, no new positions can be opened. Used to prevent excessive concentration.'],
+  ['NCDEX (National Commodity and Derivatives Exchange)','India\'s agri-commodity focused derivatives exchange. Products: soybean, chana, turmeric, guar, castor seed. Important for agricultural commodity producers and processors.'],
+  ['NSCCL (NSE Clearing Limited)','Clearing and settlement arm of NSE. Formerly National Securities Clearing Corporation Limited. Acts as central counterparty to all NSE trades. Maintains Settlement Guarantee Fund (SGF) to cover member defaults.'],
+  ['NSE (National Stock Exchange)','India\'s largest stock exchange by trading volume. Founded 1992, commenced operations 1994. Introduced electronic trading to India. Benchmark indices: Nifty 50, Bank Nifty, Nifty Midcap 150. NSE is the world\'s largest derivatives exchange by number of contracts.'],
+  ['NSDL (National Securities Depository Limited)','India\'s first and larger depository (by value of assets held). Promoted by NSE, UTI, IDBI. Handles dematerialization of securities for institutional and HNI investors primarily.'],
+  ['NISM (National Institute of Securities Markets)','SEBI\'s educational arm. Conducts certification examinations for market participants. NISM certifications are mandatory for various roles in the securities industry.'],
+  ['OI (Open Interest)','Total number of outstanding (unclosed) derivatives contracts at any given time. Rising OI with rising price suggests bullish trend strengthening. Rising OI with falling price suggests bearish trend. Falling OI indicates position unwinding.'],
+  ['Options Chain','A table showing all available strike prices for options on an underlying, with their respective premium, OI, IV (Implied Volatility), and Greeks. Essential tool for options analysis. Available on NSE website and trading platforms.'],
+  ['Put Option','An option giving the buyer the right to sell the underlying at the strike price on or before expiry. Profitable when the underlying falls below (strike minus premium). Used for hedging long equity positions.'],
+  ['QSB (Qualified Stock Broker)','SEBI designation for large brokers meeting criteria on active clients, trading volume, and net worth. QSBs have higher compliance requirements but also receive more regulatory flexibility on certain products.'],
+  ['SEBI SCORES','SEBI Complaints Redress System. Online platform for investors to file complaints against market intermediaries. Brokers must respond within 15 working days. SEBI monitors resolution quality.'],
+  ['Settlement Guarantee Fund (SGF)','Fund maintained by clearing corporations (NSCCL/ICCL) to cover settlement obligations if a member defaults. Funded by member contributions and income from clearing operations.'],
+  ['SPAN (Standard Portfolio Analysis of Risk)','Margin calculation methodology for derivatives. Computes worst-case one-day loss across 16 price and volatility scenarios. Developed by CME. Used globally for futures and options margining.'],
+  ['STT (Securities Transaction Tax)','Central government tax on securities transactions. Current rates (FY25): Equity delivery: 0.1% (buy and sell). Equity intraday: 0.025% (sell side). F&O Futures: 0.02% (sell side). F&O Options: 0.1% of premium (sell side). Not a broker charge. STT is paid to government.'],
+  ['Theta','Option Greek measuring daily time decay. The rate at which an option\'s premium decreases as expiry approaches, all else equal. Option buyers lose Theta daily. Option sellers earn it. Accelerates sharply in the last 7 days before expiry.'],
+  ['Trading Member (TM)','A SEBI-registered stock broker who is also an exchange member with trading rights. Can execute trades on exchange on behalf of clients and proprietary account. Subject to net worth, compliance, and exchange inspection requirements.'],
+  ['UCC (Unique Client Code)','A unique alphanumeric identifier assigned to every client of a broker. Mandatory for all exchange transactions. Linked to PAN. Enables exchange-level tracking of client activity across segments.'],
+  ['Vega','Option Greek measuring sensitivity to Implied Volatility. A Vega of 50 means the option price changes by Rs.50 for a 1% change in IV. Long options are long Vega (benefit from rising volatility). Short options are short Vega.'],
+  ['VIX (India Volatility Index)','NSE\'s measure of expected 30-day volatility in Nifty 50. Derived from Nifty options prices. A rising VIX indicates increasing fear. Normal range: 12 to 18. Spikes above 25 during major market events (elections, global crises).'],
+  ['WAP (Weighted Average Price)','Used in settlement of some derivatives and in calculating tax cost. For intraday traders, WAP of all trades in the same scrip determines the average cost for P&L calculation.'],
+  ['Zero Brokerage','Business model where no brokerage is charged on equity delivery trades. Pioneered by Zerodha. Revenue comes from F&O flat-fee, DP charges, margin funding, and platform subscriptions. Now standard across discount brokers.'],
+];
+
+const gc=document.getElementById('glossContainer');
+gc.innerHTML=GLOSS.sort((a,b)=>a[0].localeCompare(b[0])).map((item,i)=>`
+  <div class="accordion">
+    <button class="acc-header" onclick="toggleAcc(this)">
+      <span class="acc-term">${item[0]}</span>
+      <span class="acc-chevron">&#9660;</span>
+    </button>
+    <div class="acc-body"><p>${item[1]}</p></div>
+  </div>`).join('');
+
+function toggleAcc(btn){
+  const body=btn.nextElementSibling;
+  const isOpen=body.classList.contains('open');
+  // close all
+  document.querySelectorAll('.acc-body.open').forEach(b=>{b.classList.remove('open');b.previousElementSibling.classList.remove('open');});
+  if(!isOpen){ body.classList.add('open'); btn.classList.add('open'); }
+}
+</script>
+</body>
+</html>
