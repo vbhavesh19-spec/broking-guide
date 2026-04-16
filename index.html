@@ -30,6 +30,65 @@
   --head: 'Space Grotesk', sans-serif;
 }
 
+html.light {
+  --bg: #eef2f7;
+  --surface: #e2e9f2;
+  --card: #ffffff;
+  --card2: #f5f8fc;
+  --border: rgba(14,110,82,0.22);
+  --border-dim: rgba(14,110,82,0.12);
+  --green: #0a7a5a;
+  --green-bright: #075c44;
+  --green-dim: #b0d4c8;
+  --red: #c0392b;
+  --red-dim: rgba(192,57,43,0.12);
+  --gold: #9a6f00;
+  --gold-dim: rgba(154,111,0,0.12);
+  --blue: #1d4ed8;
+  --text: #2d3748;
+  --text-bright: #1a202c;
+  --text-dim: #64748b;
+}
+html.light body { background: var(--bg); }
+html.light .ticker-wrap { background: #d0dcea; }
+html.light .ticker-item { border-right-color: rgba(14,110,82,0.15); }
+html.light header { background: linear-gradient(180deg, #d8e6f4 0%, var(--bg) 100%); }
+html.light header::before {
+  background: repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(14,110,82,0.04) 39px,rgba(14,110,82,0.04) 40px),
+              repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(14,110,82,0.04) 39px,rgba(14,110,82,0.04) 40px);
+}
+html.light nav { background: rgba(220,232,244,0.97); }
+html.light .acc-body { background: var(--card2); }
+html.light .film-quote { border-top-color: var(--border-dim); }
+
+/* ── THEME TOGGLE ── */
+.theme-toggle {
+  position: absolute; top: 1rem; right: 1.2rem;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 0.3rem 0.75rem;
+  cursor: pointer; font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.08em; color: var(--text-dim);
+  text-transform: uppercase; transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.4rem; z-index: 10;
+}
+.theme-toggle:hover { color: var(--green); border-color: var(--green); }
+
+/* ── LIVE BADGE ── */
+.ticker-live {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+  color: var(--green); padding: 0 0.8rem; white-space: nowrap;
+  border-right: 1px solid rgba(48,170,130,0.2);
+  display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0;
+}
+.ticker-live::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--green); display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -106,7 +165,7 @@ h1 {
 }
 h1 span { color: var(--green); }
 .header-sub {
-  font-size: 1rem; color: var(--text-dim);
+  font-size: 1rem; color: var(--text);
   max-width: 580px; margin: 0 auto 1.5rem;
   line-height: 1.7;
 }
@@ -144,7 +203,7 @@ nav {
 .nav-btn {
   font-family: var(--mono); font-size: 0.65rem;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--text-dim); background: none; border: none;
+  color: var(--text); background: none; border: none;
   padding: 1rem 1.1rem; cursor: pointer;
   white-space: nowrap; flex-shrink: 0;
   position: relative; transition: color 0.2s;
@@ -408,10 +467,14 @@ footer .ft { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15e
 
 <!-- TICKER -->
 <div class="ticker-wrap">
+  <div class="ticker-live" id="tickerBadge">STATIC</div>
   <div class="ticker-track" id="ticker"></div>
 </div>
 
 <header>
+  <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+    <span id="themeIcon">&#9788;</span><span id="themeLabel">Light</span>
+  </button>
   <div class="header-tag">NSE / BSE / SEBI</div>
   <h1>The <span>Desk Guide</span><br>Indian Broking Industry</h1>
   <p class="header-sub">From AP registration to exchange settlement. Everything a finance graduate needs before their first week on the desk.</p>
@@ -1196,7 +1259,29 @@ footer .ft { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15e
 
 <script>
 // ── TICKER ──
-const tData=[
+// ── THEME TOGGLE ──
+(function(){
+  const saved=localStorage.getItem('broking-theme');
+  if(saved==='light') document.documentElement.classList.add('light');
+  updateThemeBtn();
+})();
+function updateThemeBtn(){
+  const isLight=document.documentElement.classList.contains('light');
+  const icon=document.getElementById('themeIcon');
+  const label=document.getElementById('themeLabel');
+  if(!icon) return;
+  icon.textContent=isLight?'☽':'☀';
+  label.textContent=isLight?'Dark':'Light';
+}
+function toggleTheme(){
+  const html=document.documentElement;
+  html.classList.toggle('light');
+  localStorage.setItem('broking-theme',html.classList.contains('light')?'light':'dark');
+  updateThemeBtn();
+}
+
+// ── TICKER ──
+const STATIC_DATA=[
   {name:'NIFTY 50',val:'24,328.15',chg:'+0.62%',up:true},
   {name:'SENSEX',val:'80,116.49',chg:'+0.58%',up:true},
   {name:'BANK NIFTY',val:'52,463.20',chg:'+0.84%',up:true},
@@ -1207,12 +1292,65 @@ const tData=[
   {name:'GOLD MCX',val:'72,310',chg:'+0.41%',up:true},
   {name:'CRUDE MCX',val:'6,841',chg:'-0.67%',up:false},
   {name:'NIFTY SMALLCAP',val:'8,214.60',chg:'+1.12%',up:true},
-  {name:'FII FLOW',val:'-Rs.1,240Cr',chg:'Today',up:false},
-  {name:'DII FLOW',val:'+Rs.2,180Cr',chg:'Today',up:true},
 ];
+
+const LIVE_SYMBOLS=[
+  {sym:'^NSEI',name:'NIFTY 50'},
+  {sym:'^BSESN',name:'SENSEX'},
+  {sym:'^NSEBANK',name:'BANK NIFTY'},
+  {sym:'^CNXIT',name:'NIFTY IT'},
+  {sym:'^INDIAVIX',name:'INDIA VIX'},
+  {sym:'USDINR=X',name:'USD/INR'},
+  {sym:'GC=F',name:'GOLD'},
+  {sym:'CL=F',name:'CRUDE OIL'},
+];
+
 const track=document.getElementById('ticker');
-const items=[...tData,...tData].map(d=>`<div class="ticker-item"><span class="name">${d.name}</span><span class="val">${d.val}</span><span class="chg ${d.up?'up':'dn'}">${d.chg}</span></div>`).join('');
-track.innerHTML=items;
+const badge=document.getElementById('tickerBadge');
+
+function buildTicker(data){
+  const items=[...data,...data].map(d=>`<div class="ticker-item"><span class="name">${d.name}</span><span class="val">${d.val}</span><span class="chg ${d.up?'up':'dn'}">${d.chg}</span></div>`).join('');
+  track.innerHTML=items;
+}
+
+function fmt(n,decimals=2){
+  return n.toLocaleString('en-IN',{minimumFractionDigits:decimals,maximumFractionDigits:decimals});
+}
+
+async function fetchLive(){
+  const syms=LIVE_SYMBOLS.map(s=>s.sym).join(',');
+  const url=`https://query1.finance.yahoo.com/v7/finance/quote?lang=en-US&region=IN&symbols=${encodeURIComponent(syms)}`;
+  try{
+    const res=await fetch(url,{headers:{'Accept':'application/json'}});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const json=await res.json();
+    const results=json?.quoteResponse?.result;
+    if(!results||!results.length) throw new Error('No data');
+    const data=LIVE_SYMBOLS.map(s=>{
+      const q=results.find(r=>r.symbol===s.sym);
+      if(!q) return null;
+      const price=q.regularMarketPrice||0;
+      const chgPct=q.regularMarketChangePercent||0;
+      const up=chgPct>=0;
+      const chgStr=(up?'+':'')+chgPct.toFixed(2)+'%';
+      const decimals=(price<100)?2:(price<10000)?2:2;
+      return {name:s.name,val:fmt(price,decimals),chg:chgStr,up};
+    }).filter(Boolean);
+    if(data.length>0){
+      buildTicker(data);
+      badge.textContent='LIVE';
+      badge.style.color='var(--green)';
+    }
+  }catch(e){
+    buildTicker(STATIC_DATA);
+    badge.textContent='DELAYED';
+    badge.style.color='var(--text-dim)';
+  }
+}
+
+buildTicker(STATIC_DATA);
+fetchLive();
+setInterval(fetchLive,60000);
 
 // ── NAV ──
 function show(id,btn){
@@ -1264,42 +1402,4 @@ const GLOSS=[
   ['NCDEX (National Commodity and Derivatives Exchange)','India\'s agri-commodity focused derivatives exchange. Products: soybean, chana, turmeric, guar, castor seed. Important for agricultural commodity producers and processors.'],
   ['NSCCL (NSE Clearing Limited)','Clearing and settlement arm of NSE. Formerly National Securities Clearing Corporation Limited. Acts as central counterparty to all NSE trades. Maintains Settlement Guarantee Fund (SGF) to cover member defaults.'],
   ['NSE (National Stock Exchange)','India\'s largest stock exchange by trading volume. Founded 1992, commenced operations 1994. Introduced electronic trading to India. Benchmark indices: Nifty 50, Bank Nifty, Nifty Midcap 150. NSE is the world\'s largest derivatives exchange by number of contracts.'],
-  ['NSDL (National Securities Depository Limited)','India\'s first and larger depository (by value of assets held). Promoted by NSE, UTI, IDBI. Handles dematerialization of securities for institutional and HNI investors primarily.'],
-  ['NISM (National Institute of Securities Markets)','SEBI\'s educational arm. Conducts certification examinations for market participants. NISM certifications are mandatory for various roles in the securities industry.'],
-  ['OI (Open Interest)','Total number of outstanding (unclosed) derivatives contracts at any given time. Rising OI with rising price suggests bullish trend strengthening. Rising OI with falling price suggests bearish trend. Falling OI indicates position unwinding.'],
-  ['Options Chain','A table showing all available strike prices for options on an underlying, with their respective premium, OI, IV (Implied Volatility), and Greeks. Essential tool for options analysis. Available on NSE website and trading platforms.'],
-  ['Put Option','An option giving the buyer the right to sell the underlying at the strike price on or before expiry. Profitable when the underlying falls below (strike minus premium). Used for hedging long equity positions.'],
-  ['QSB (Qualified Stock Broker)','SEBI designation for large brokers meeting criteria on active clients, trading volume, and net worth. QSBs have higher compliance requirements but also receive more regulatory flexibility on certain products.'],
-  ['SEBI SCORES','SEBI Complaints Redress System. Online platform for investors to file complaints against market intermediaries. Brokers must respond within 15 working days. SEBI monitors resolution quality.'],
-  ['Settlement Guarantee Fund (SGF)','Fund maintained by clearing corporations (NSCCL/ICCL) to cover settlement obligations if a member defaults. Funded by member contributions and income from clearing operations.'],
-  ['SPAN (Standard Portfolio Analysis of Risk)','Margin calculation methodology for derivatives. Computes worst-case one-day loss across 16 price and volatility scenarios. Developed by CME. Used globally for futures and options margining.'],
-  ['STT (Securities Transaction Tax)','Central government tax on securities transactions. Current rates (FY25): Equity delivery: 0.1% (buy and sell). Equity intraday: 0.025% (sell side). F&O Futures: 0.02% (sell side). F&O Options: 0.1% of premium (sell side). Not a broker charge. STT is paid to government.'],
-  ['Theta','Option Greek measuring daily time decay. The rate at which an option\'s premium decreases as expiry approaches, all else equal. Option buyers lose Theta daily. Option sellers earn it. Accelerates sharply in the last 7 days before expiry.'],
-  ['Trading Member (TM)','A SEBI-registered stock broker who is also an exchange member with trading rights. Can execute trades on exchange on behalf of clients and proprietary account. Subject to net worth, compliance, and exchange inspection requirements.'],
-  ['UCC (Unique Client Code)','A unique alphanumeric identifier assigned to every client of a broker. Mandatory for all exchange transactions. Linked to PAN. Enables exchange-level tracking of client activity across segments.'],
-  ['Vega','Option Greek measuring sensitivity to Implied Volatility. A Vega of 50 means the option price changes by Rs.50 for a 1% change in IV. Long options are long Vega (benefit from rising volatility). Short options are short Vega.'],
-  ['VIX (India Volatility Index)','NSE\'s measure of expected 30-day volatility in Nifty 50. Derived from Nifty options prices. A rising VIX indicates increasing fear. Normal range: 12 to 18. Spikes above 25 during major market events (elections, global crises).'],
-  ['WAP (Weighted Average Price)','Used in settlement of some derivatives and in calculating tax cost. For intraday traders, WAP of all trades in the same scrip determines the average cost for P&L calculation.'],
-  ['Zero Brokerage','Business model where no brokerage is charged on equity delivery trades. Pioneered by Zerodha. Revenue comes from F&O flat-fee, DP charges, margin funding, and platform subscriptions. Now standard across discount brokers.'],
-];
-
-const gc=document.getElementById('glossContainer');
-gc.innerHTML=GLOSS.sort((a,b)=>a[0].localeCompare(b[0])).map((item,i)=>`
-  <div class="accordion">
-    <button class="acc-header" onclick="toggleAcc(this)">
-      <span class="acc-term">${item[0]}</span>
-      <span class="acc-chevron">&#9660;</span>
-    </button>
-    <div class="acc-body"><p>${item[1]}</p></div>
-  </div>`).join('');
-
-function toggleAcc(btn){
-  const body=btn.nextElementSibling;
-  const isOpen=body.classList.contains('open');
-  // close all
-  document.querySelectorAll('.acc-body.open').forEach(b=>{b.classList.remove('open');b.previousElementSibling.classList.remove('open');});
-  if(!isOpen){ body.classList.add('open'); btn.classList.add('open'); }
-}
-</script>
-</body>
-</html>
+  ['NSDL (National Securities Depository Limited)','India\'s first and larger depository (by value of assets held). Promoted by NSE, UTI, IDBI. Handles dematerialization of securities for
