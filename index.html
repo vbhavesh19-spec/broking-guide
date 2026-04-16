@@ -16,7 +16,7 @@
   --border-dim: rgba(48,170,130,0.08);
   --green: #30aa82;
   --green-bright: #3dffa0;
-  --green-dim: #1a6650;
+  --green-dim: #2a7a60;
   --red: #e84040;
   --red-dim: rgba(232,64,64,0.15);
   --gold: #e8aa30;
@@ -24,42 +24,56 @@
   --blue: #4a9eff;
   --text: #d0dfe8;
   --text-bright: #f2f8ff;
-  --text-dim: #556070;
+  --text-dim: #8aa0b4;
   --mono: 'JetBrains Mono', monospace;
   --sans: 'Inter', sans-serif;
   --head: 'Space Grotesk', sans-serif;
 }
 
 html.light {
-  --bg: #eef2f7;
-  --surface: #e2e9f2;
+  --bg: #f0f4f8;
+  --surface: #e4eaf2;
   --card: #ffffff;
-  --card2: #f5f8fc;
-  --border: rgba(14,110,82,0.22);
-  --border-dim: rgba(14,110,82,0.12);
+  --card2: #f7f9fc;
+  --border: rgba(14,110,82,0.25);
+  --border-dim: rgba(14,110,82,0.14);
   --green: #0a7a5a;
-  --green-bright: #075c44;
-  --green-dim: #b0d4c8;
+  --green-bright: #064d38;
+  --green-dim: #1a8a6a;
   --red: #c0392b;
   --red-dim: rgba(192,57,43,0.12);
-  --gold: #9a6f00;
-  --gold-dim: rgba(154,111,0,0.12);
+  --gold: #8a6200;
+  --gold-dim: rgba(138,98,0,0.12);
   --blue: #1d4ed8;
-  --text: #2d3748;
-  --text-bright: #1a202c;
-  --text-dim: #64748b;
+  --text: #1e2d3d;
+  --text-bright: #0f1923;
+  --text-dim: #4a6070;
 }
 html.light body { background: var(--bg); }
-html.light .ticker-wrap { background: #d0dcea; }
-html.light .ticker-item { border-right-color: rgba(14,110,82,0.15); }
-html.light header { background: linear-gradient(180deg, #d8e6f4 0%, var(--bg) 100%); }
+html.light .ticker-wrap { background: #ccd8e8; }
+html.light .ticker-item { border-right-color: rgba(14,110,82,0.18); }
+html.light .ticker-item .name { color: var(--text-dim); }
+html.light .ticker-item .val { color: var(--text-bright); }
+html.light .ticker-status { background: #c8d8e8; color: var(--text-dim); border-bottom-color: var(--border-dim); }
+html.light header { background: linear-gradient(180deg, #dce8f2 0%, var(--bg) 100%); }
 html.light header::before {
-  background: repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(14,110,82,0.04) 39px,rgba(14,110,82,0.04) 40px),
-              repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(14,110,82,0.04) 39px,rgba(14,110,82,0.04) 40px);
+  background: repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(14,110,82,0.05) 39px,rgba(14,110,82,0.05) 40px),
+              repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(14,110,82,0.05) 39px,rgba(14,110,82,0.05) 40px);
 }
-html.light nav { background: rgba(220,232,244,0.97); }
-html.light .acc-body { background: var(--card2); }
-html.light .film-quote { border-top-color: var(--border-dim); }
+html.light nav { background: rgba(218,230,244,0.97); }
+html.light .nav-btn:hover { color: var(--text-bright); }
+html.light .acc-header { background: var(--card2); color: var(--text-bright); }
+html.light .acc-body { background: var(--card); color: var(--text); }
+html.light .acc-term { color: var(--text-bright); }
+html.light .film-quote { border-top-color: var(--border-dim); color: var(--text); }
+html.light .film-quote cite { color: var(--green); }
+html.light .meta-chip { color: var(--text-dim); background: rgba(14,110,82,0.07); }
+html.light .card { background: var(--card); border-color: var(--border-dim); }
+html.light .card p { color: var(--text); }
+html.light .sec-desc { color: var(--text-dim); }
+html.light .callout { border-color: var(--border); }
+html.light footer { color: var(--text-dim); }
+html.light footer .ft { color: var(--green); }
 
 /* ── THEME TOGGLE ── */
 .theme-toggle {
@@ -73,17 +87,13 @@ html.light .film-quote { border-top-color: var(--border-dim); }
 }
 .theme-toggle:hover { color: var(--green); border-color: var(--green); }
 
-/* ── LIVE BADGE ── */
-.ticker-live {
-  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
-  color: var(--green); padding: 0 0.8rem; white-space: nowrap;
-  border-right: 1px solid rgba(48,170,130,0.2);
-  display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0;
-}
-.ticker-live::before {
-  content: ''; width: 5px; height: 5px; border-radius: 50%;
-  background: var(--green); display: inline-block;
-  animation: pulse 1.5s infinite;
+/* ── TICKER STATUS ── */
+.ticker-status {
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-dim);
+  text-align: right; padding: 0.18rem 0.8rem;
+  background: #010408;
+  border-bottom: 1px solid var(--border-dim);
 }
 @keyframes pulse {
   0%,100% { opacity: 1; } 50% { opacity: 0.3; }
@@ -467,15 +477,14 @@ footer .ft { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15e
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-  <div class="ticker-live" id="tickerBadge">STATIC</div>
   <div class="ticker-track" id="ticker"></div>
 </div>
+<div class="ticker-status" id="tickerBadge">&#9679; LOADING</div>
 
 <header>
   <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
     <span id="themeIcon">&#9788;</span><span id="themeLabel">Light</span>
   </button>
-  <div class="header-tag">NSE / BSE / SEBI</div>
   <h1>The <span>Desk Guide</span><br>Indian Broking Industry</h1>
   <p class="header-sub">From AP registration to exchange settlement. Everything a finance graduate needs before their first week on the desk.</p>
   <div class="header-meta">
@@ -1338,17 +1347,18 @@ async function fetchLive(){
     }).filter(Boolean);
     if(data.length>0){
       buildTicker(data);
-      badge.textContent='LIVE';
+      badge.innerHTML='&#9679; LIVE &mdash; refreshes every 60s';
       badge.style.color='var(--green)';
     }
   }catch(e){
     buildTicker(STATIC_DATA);
-    badge.textContent='DELAYED';
-    badge.style.color='var(--text-dim)';
+    badge.innerHTML='&#9679; DELAYED &mdash; live data unavailable';
+    badge.style.color='';
   }
 }
 
 buildTicker(STATIC_DATA);
+badge.innerHTML='&#9679; LOADING&hellip;';
 fetchLive();
 setInterval(fetchLive,60000);
 
@@ -1402,4 +1412,42 @@ const GLOSS=[
   ['NCDEX (National Commodity and Derivatives Exchange)','India\'s agri-commodity focused derivatives exchange. Products: soybean, chana, turmeric, guar, castor seed. Important for agricultural commodity producers and processors.'],
   ['NSCCL (NSE Clearing Limited)','Clearing and settlement arm of NSE. Formerly National Securities Clearing Corporation Limited. Acts as central counterparty to all NSE trades. Maintains Settlement Guarantee Fund (SGF) to cover member defaults.'],
   ['NSE (National Stock Exchange)','India\'s largest stock exchange by trading volume. Founded 1992, commenced operations 1994. Introduced electronic trading to India. Benchmark indices: Nifty 50, Bank Nifty, Nifty Midcap 150. NSE is the world\'s largest derivatives exchange by number of contracts.'],
-  ['NSDL (National Securities Depository Limited)','India\'s first and larger depository (by value of assets held). Promoted by NSE, UTI, IDBI. Handles dematerialization of securities for
+  ['NSDL (National Securities Depository Limited)','India\'s first and larger depository (by value of assets held). Promoted by NSE, UTI, IDBI. Handles dematerialization of securities for institutional and HNI investors primarily.'],
+  ['NISM (National Institute of Securities Markets)','SEBI\'s educational arm. Conducts certification examinations for market participants. NISM certifications are mandatory for various roles in the securities industry.'],
+  ['OI (Open Interest)','Total number of outstanding (unclosed) derivatives contracts at any given time. Rising OI with rising price suggests bullish trend strengthening. Rising OI with falling price suggests bearish trend. Falling OI indicates position unwinding.'],
+  ['Options Chain','A table showing all available strike prices for options on an underlying, with their respective premium, OI, IV (Implied Volatility), and Greeks. Essential tool for options analysis. Available on NSE website and trading platforms.'],
+  ['Put Option','An option giving the buyer the right to sell the underlying at the strike price on or before expiry. Profitable when the underlying falls below (strike minus premium). Used for hedging long equity positions.'],
+  ['QSB (Qualified Stock Broker)','SEBI designation for large brokers meeting criteria on active clients, trading volume, and net worth. QSBs have higher compliance requirements but also receive more regulatory flexibility on certain products.'],
+  ['SEBI SCORES','SEBI Complaints Redress System. Online platform for investors to file complaints against market intermediaries. Brokers must respond within 15 working days. SEBI monitors resolution quality.'],
+  ['Settlement Guarantee Fund (SGF)','Fund maintained by clearing corporations (NSCCL/ICCL) to cover settlement obligations if a member defaults. Funded by member contributions and income from clearing operations.'],
+  ['SPAN (Standard Portfolio Analysis of Risk)','Margin calculation methodology for derivatives. Computes worst-case one-day loss across 16 price and volatility scenarios. Developed by CME. Used globally for futures and options margining.'],
+  ['STT (Securities Transaction Tax)','Central government tax on securities transactions. Current rates (FY25): Equity delivery: 0.1% (buy and sell). Equity intraday: 0.025% (sell side). F&O Futures: 0.02% (sell side). F&O Options: 0.1% of premium (sell side). Not a broker charge. STT is paid to government.'],
+  ['Theta','Option Greek measuring daily time decay. The rate at which an option\'s premium decreases as expiry approaches, all else equal. Option buyers lose Theta daily. Option sellers earn it. Accelerates sharply in the last 7 days before expiry.'],
+  ['Trading Member (TM)','A SEBI-registered stock broker who is also an exchange member with trading rights. Can execute trades on exchange on behalf of clients and proprietary account. Subject to net worth, compliance, and exchange inspection requirements.'],
+  ['UCC (Unique Client Code)','A unique alphanumeric identifier assigned to every client of a broker. Mandatory for all exchange transactions. Linked to PAN. Enables exchange-level tracking of client activity across segments.'],
+  ['Vega','Option Greek measuring sensitivity to Implied Volatility. A Vega of 50 means the option price changes by Rs.50 for a 1% change in IV. Long options are long Vega (benefit from rising volatility). Short options are short Vega.'],
+  ['VIX (India Volatility Index)','NSE\'s measure of expected 30-day volatility in Nifty 50. Derived from Nifty options prices. A rising VIX indicates increasing fear. Normal range: 12 to 18. Spikes above 25 during major market events (elections, global crises).'],
+  ['WAP (Weighted Average Price)','Used in settlement of some derivatives and in calculating tax cost. For intraday traders, WAP of all trades in the same scrip determines the average cost for P&L calculation.'],
+  ['Zero Brokerage','Business model where no brokerage is charged on equity delivery trades. Pioneered by Zerodha. Revenue comes from F&O flat-fee, DP charges, margin funding, and platform subscriptions. Now standard across discount brokers.'],
+];
+
+const gc=document.getElementById('glossContainer');
+gc.innerHTML=GLOSS.sort((a,b)=>a[0].localeCompare(b[0])).map((item,i)=>`
+  <div class="accordion">
+    <button class="acc-header" onclick="toggleAcc(this)">
+      <span class="acc-term">${item[0]}</span>
+      <span class="acc-chevron">&#9660;</span>
+    </button>
+    <div class="acc-body"><p>${item[1]}</p></div>
+  </div>`).join('');
+
+function toggleAcc(btn){
+  const body=btn.nextElementSibling;
+  const isOpen=body.classList.contains('open');
+  // close all
+  document.querySelectorAll('.acc-body.open').forEach(b=>{b.classList.remove('open');b.previousElementSibling.classList.remove('open');});
+  if(!isOpen){ body.classList.add('open'); btn.classList.add('open'); }
+}
+</script>
+</body>
+</html>
